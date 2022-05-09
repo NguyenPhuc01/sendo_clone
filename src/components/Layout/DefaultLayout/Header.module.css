@@ -1,0 +1,18 @@
+.bgHelp {
+  background-color: #d52220;
+}
+.help {
+  height: 32px;
+}
+.fz {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.6rem;
+  font-family: inherit;
+}
+.bg{
+    background-color: #EE2624;
+}
+.sizeLogo{
+    height: 64px;
+}
