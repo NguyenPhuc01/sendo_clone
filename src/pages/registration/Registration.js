@@ -1,17 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../login/Login.module.css";
 import { Container, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+const axios = require("axios").default;
 
 const Registration = () => {
   const {
     register,
     handleSubmit,
-    watch,
+    getValues,
+
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => console.log(data);
+
+  const handlRegister = () => {
+    const values = getValues();
+
+    console.log(values);
+  };
+
+  const [api, setApi] = useState([]);
+
+  const postApi = async () => {
+    try {
+      const data = {
+        email: "phuc123",
+        password: "123456",
+      };
+
+      const result = await axios({
+        method: "POST",
+        url: "http://khanh.tokyo/api/register",
+        data,
+      });
+      // console.log(result.data);
+      setApi(result.data);
+    } catch (errors) {
+      console.log("loi");
+    }
+  };
+  console.log(api.data);
+
+  useEffect(() => {
+    postApi();
+  }, []);
 
   return (
     <Container fluid>
@@ -74,32 +108,30 @@ const Registration = () => {
                   )}
                 </div>
               </div>
-
-              <Link to="/login" className="text-white text-decoration-none">
-                <button type="submit" className="btn btn-primary  mt-4 w-100">
-                  Đăng Ký
-                </button>
-              </Link>
-
-              <div className="text-center text-black-50 mt-5">
-                <span>or sign up using</span>
-                <div>
-                  <button className="bg-body border-0">
-                    <img
-                      src="../facebook.png"
-                      alt=""
-                      className={`${styles.icon} mt-3`}
-                    />
-                  </button>
-                  <button className="bg-body border-0">
-                    <img
-                      src="../twitter.png"
-                      alt=""
-                      className={`${styles.icon} mt-3 `}
-                    />
-                  </button>
+              <div className="mb-3">
+                <label htmlFor="exampleInputPassword1" className="form-label">
+                  Confirm Password
+                </label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="exampleInputPassword1"
+                  {...register("Cpassword", { required: true })}
+                />
+                <div id="emailHelp" className="form-text">
+                  {errors.Cpassword && (
+                    <p className="text-danger">Bạn phải nhập Cpassword</p>
+                  )}
                 </div>
               </div>
+
+              <Link
+                to=""
+                className="text-white text-decoration-none btn btn-primary mt-4 w-100"
+                onClick={handlRegister}
+              >
+                Đăng Ký
+              </Link>
             </form>
           </div>
         </Col>
