@@ -2,8 +2,29 @@ import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import styles from "../DefaultLayout/Header.module.css";
 import { BsGrid, BsSearch, BsHandbag } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 const Header = () => {
+  const navigate = useNavigate();
+
+  const infor = localStorage.getItem("infor");
+  const nameInfor = JSON.parse(infor);
+
+  // console.log(nameInfor.name);
+  // const user = localStorage.setItem("user", "Đăng Nhập");
+  const handLogOut = () => {
+    localStorage.removeItem("infor");
+    window.location.reload();
+    console.log("click");
+  };
+  const hanDangNhap = () => {
+    if (nameInfor) {
+      navigate("/");
+    } else {
+      navigate("/login");
+    }
+  };
+
   return (
     <div>
       <Container fluid className={`${styles.bgHelp} text-white`}>
@@ -59,15 +80,26 @@ const Header = () => {
             </Col>
             <Col lg="2" md="3 " sm="3" xs="1">
               <div className="d-flex justify-content-around ">
-                <div className="d-none d-lg-block">
+                <div className="d-none d-xl-block ">
                   <BsHandbag className="fs-4" />
                 </div>
-                <div className="d-none d-lg-block">
-                  <Link to="login ">
-                    <button className="border-0 bg-body fw-bold rounded-3 py-1 px-2 text-nowrap">
-                      Đăng nhập
+                <div className="d-flex ">
+                  <div className="d-none d-lg-block ">
+                    <button
+                      className="border-0 bg-body fw-bold rounded-3 py-1 px-2 text-nowrap ms-2"
+                      onClick={hanDangNhap}
+                    >
+                      {nameInfor ? nameInfor.name : "Đăng Nhập"}
                     </button>
-                  </Link>
+                  </div>
+                  <div className="d-none d-lg-block ">
+                    <button
+                      className="border-0 bg-body fw-bold rounded-3 py-1 px-2 text-nowrap ms-2"
+                      onClick={handLogOut}
+                    >
+                      Đăng xuất
+                    </button>
+                  </div>
                 </div>
               </div>
             </Col>

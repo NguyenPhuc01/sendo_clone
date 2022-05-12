@@ -4,35 +4,54 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Example from "../../components/loading/Loading";
+const axios = require("axios").default;
 
 const Login = () => {
-  const [path, setPath] = useState("");
+  // const [path, setPath] = useState("");
   const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
 
-    getValues,
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-  const handlLogin = () => {
-    const values = getValues();
-    if (values.email && values.password === "admin") {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
+  const postApi = async (data) => {
+    setLoading(true);
 
-        navigate("/");
-      }, 2000);
-    } else {
-      alert("Tên đăng nhập hoặc mật khẩu không đúng");
+    try {
+      const result = await axios({
+        method: "POST",
+        url: "http://khanh.tokyo/api/login",
+        data,
+      });
+      localStorage.setItem("infor", JSON.stringify(result.data.data));
+      console.log("day la result", result.data.data.name);
+
+      setLoading(false);
+      navigate("/");
+    } catch (errors) {
+      console.log("loi");
     }
   };
+  const onSubmit = (data) => {
+    postApi(data);
+  };
+
+  // const handlLogin = () => {
+  //   const values = getValues();
+  //   if (values.email && values.password === "admin") {
+  //     setLoading(true);
+  //     setTimeout(() => {
+  //       setLoading(false);
+
+  //       navigate("/");
+  //     }, 2000);
+  //   } else {
+  //     alert("Tên đăng nhập hoặc mật khẩu không đúng");
+  //   }
+  // };
   return (
     <Container fluid>
       <Row className={styles.height}>
@@ -111,14 +130,9 @@ const Login = () => {
                   </div>
 
                   <div className=" d-flex justify-content-between mt-4">
-                    <Link
-                      to={path}
-                      className="text-white text-decoration-none  bg-primary py-1 px-2 rounded-3"
-                      type="submit"
-                      onClick={handlLogin}
-                    >
+                    <button type="submit" className="btn btn-primary  ">
                       Đăng Nhập
-                    </Link>
+                    </button>
 
                     <Link
                       to="/Registration"

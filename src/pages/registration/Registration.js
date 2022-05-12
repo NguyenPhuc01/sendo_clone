@@ -1,51 +1,45 @@
-import React, { useEffect, useState } from "react";
+// import React, { useEffect, useState } from "react";
 import styles from "../login/Login.module.css";
 import { Container, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const axios = require("axios").default;
 
 const Registration = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
-    getValues,
+    // getValues,
 
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
 
-  const handlRegister = () => {
-    const values = getValues();
-
-    console.log(values);
-  };
-
-  const [api, setApi] = useState([]);
-
-  const postApi = async () => {
+  const postApi = async (data) => {
     try {
-      const data = {
-        email: "phuc123",
-        password: "123456",
-      };
 
       const result = await axios({
         method: "POST",
         url: "http://khanh.tokyo/api/register",
         data,
       });
-      // console.log(result.data);
-      setApi(result.data);
+      console.log("day la result", result.data.data);
+      navigate("/login");
     } catch (errors) {
       console.log("loi");
     }
   };
-  console.log(api.data);
+  const onSubmit = (data) => {
+    postApi(data);
+  };
 
-  useEffect(() => {
-    postApi();
-  }, []);
+  // const handlRegister = () => {
+  //   const values = getValues();
+
+  // };
+
+  // const [api, setApi] = useState([]);
 
   return (
     <Container fluid>
@@ -57,32 +51,32 @@ const Registration = () => {
             <h1 className="text-center mb-5">Registration</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-3">
-                <label htmlFor="exampleInputEmail1" className="form-label">
+                <label htmlFor="name" className="form-label">
                   Name
                 </label>
                 <input
                   defaultValue=""
                   type="text"
                   className="form-control"
-                  id="exampleInputEmail1"
+                  id="name"
                   aria-describedby="emailHelp"
                   {...register("name", { required: true })}
                 />
-                <div id="exampleInputEmail1" className="form-text">
+                <div id="name" className="form-text">
                   {errors.name && (
                     <p className="text-danger">Bạn phải nhập Name</p>
                   )}
                 </div>
               </div>
               <div className="mb-3">
-                <label htmlFor="exampleInputEmail1" className="form-label">
+                <label htmlFor="email" className="form-label">
                   Email address
                 </label>
                 <input
                   defaultValue=""
                   type="email"
                   className="form-control"
-                  id="exampleInputEmail1"
+                  id="email"
                   aria-describedby="emailHelp"
                   {...register("email", { required: true })}
                 />
@@ -93,45 +87,50 @@ const Registration = () => {
                 </div>
               </div>
               <div className="mb-3">
-                <label htmlFor="exampleInputPassword1" className="form-label">
+                <label htmlFor="password" className="form-label">
                   Password
                 </label>
                 <input
                   type="password"
                   className="form-control"
-                  id="exampleInputPassword1"
+                  id="password"
                   {...register("password", { required: true })}
                 />
-                <div id="emailHelp" className="form-text">
+                <div id="password" className="form-text">
                   {errors.password && (
                     <p className="text-danger">Bạn phải nhập password</p>
                   )}
                 </div>
               </div>
               <div className="mb-3">
-                <label htmlFor="exampleInputPassword1" className="form-label">
+                <label htmlFor="c_password" className="form-label">
                   Confirm Password
                 </label>
                 <input
                   type="password"
                   className="form-control"
-                  id="exampleInputPassword1"
-                  {...register("Cpassword", { required: true })}
+                  id="c_password"
+                  {...register("c_password", { required: true })}
                 />
-                <div id="emailHelp" className="form-text">
-                  {errors.Cpassword && (
-                    <p className="text-danger">Bạn phải nhập Cpassword</p>
+                <div id="c_password" className="form-text">
+                  {errors.c_password && (
+                    <p className="text-danger">
+                      Bạn phải nhập Confirm password
+                    </p>
                   )}
                 </div>
               </div>
-
-              <Link
+              <button type="submit" className="btn btn-primary d-flex ">
+                Register
+              </button>
+              {/* <Link
                 to=""
+                type="submit"
                 className="text-white text-decoration-none btn btn-primary mt-4 w-100"
                 onClick={handlRegister}
               >
                 Đăng Ký
-              </Link>
+              </Link> */}
             </form>
           </div>
         </Col>
