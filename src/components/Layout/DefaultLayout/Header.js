@@ -2,26 +2,27 @@ import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import styles from "../DefaultLayout/Header.module.css";
 import { BsGrid, BsSearch, BsHandbag } from "react-icons/bs";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { BsBoxArrowRight } from "react-icons/bs";
 
 const Header = () => {
   const navigate = useNavigate();
-
   const infor = localStorage.getItem("infor");
   const nameInfor = JSON.parse(infor);
 
-  // console.log(nameInfor.name);
-  // const user = localStorage.setItem("user", "Đăng Nhập");
   const handLogOut = () => {
     localStorage.removeItem("infor");
+
     window.location.reload();
     console.log("click");
   };
   const hanDangNhap = () => {
     if (nameInfor) {
       navigate("/");
+
+      console.log("log");
     } else {
-      navigate("/login");
+      window.location.reload(navigate("/login"));
     }
   };
 
@@ -83,22 +84,60 @@ const Header = () => {
                 <div className="d-none d-xl-block ">
                   <BsHandbag className="fs-4" />
                 </div>
-                <div className="d-flex ">
+                <div className=" ">
                   <div className="d-none d-lg-block ">
                     <button
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
                       className="border-0 bg-body fw-bold rounded-3 py-1 px-2 text-nowrap ms-2"
                       onClick={hanDangNhap}
                     >
                       {nameInfor ? nameInfor.name : "Đăng Nhập"}
                     </button>
                   </div>
-                  <div className="d-none d-lg-block ">
-                    <button
-                      className="border-0 bg-body fw-bold rounded-3 py-1 px-2 text-nowrap ms-2"
-                      onClick={handLogOut}
-                    >
-                      Đăng xuất
-                    </button>
+                </div>
+
+                <div
+                  className="modal "
+                  id="exampleModal"
+                  tabIndex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div className="modal-dialog">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLabel">
+                          Modal title
+                        </h5>
+                        <button
+                          type="button"
+                          className="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div className="modal-body">
+                        <div className="  " id="logOut">
+                          <button
+                            className="border-0 bg-body fw-bold rounded-3 py-1 px-2 text-nowrap ms-2"
+                            onClick={handLogOut}
+                          >
+                            <BsBoxArrowRight className="fs-4 fw-bold me-2" />{" "}
+                            Đăng Xuất
+                          </button>
+                        </div>
+                      </div>
+                      <div className="modal-footer">
+                        <button
+                          type="button"
+                          className="btn btn-secondary"
+                          data-bs-dismiss="modal"
+                        >
+                          Close
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
