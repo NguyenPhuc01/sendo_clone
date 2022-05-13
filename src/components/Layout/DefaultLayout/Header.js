@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import styles from "../DefaultLayout/Header.module.css";
 import { BsGrid, BsSearch, BsHandbag } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import { BsBoxArrowRight } from "react-icons/bs";
+import { BsBoxArrowRight, BsPersonCircle } from "react-icons/bs";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -85,20 +85,26 @@ const Header = () => {
                   <BsHandbag className="fs-4" />
                 </div>
                 <div className=" ">
-                  <div className="d-none d-lg-block ">
+                  <div className="d-none d-md-block ">
                     <button
                       data-bs-toggle="modal"
                       data-bs-target="#exampleModal"
-                      className="border-0 bg-body fw-bold rounded-3 py-1 px-2 text-nowrap ms-2"
+                      className="border-0 bg-body ] rounded-3 py-1 px-2 text-nowrap ms-2"
                       onClick={hanDangNhap}
                     >
+                      {" "}
+                      {nameInfor ? (
+                        <BsPersonCircle className="text-black-50 me-1 fs-5" />
+                      ) : (
+                        ""
+                      )}
                       {nameInfor ? nameInfor.name : "Đăng Nhập"}
                     </button>
                   </div>
                 </div>
 
                 <div
-                  className="modal "
+                  className={`${styles.modall} modal`}
                   id="exampleModal"
                   tabIndex="-1"
                   aria-labelledby="exampleModalLabel"
@@ -117,25 +123,53 @@ const Header = () => {
                           aria-label="Close"
                         ></button>
                       </div>
-                      <div className="modal-body">
-                        <div className="  " id="logOut">
+                      <div className="modal-body text-black">
+                        <div>
                           <button
-                            className="border-0 bg-body fw-bold rounded-3 py-1 px-2 text-nowrap ms-2"
-                            onClick={handLogOut}
+                            className={`bg-body border-0 ${styles.hoverButton} mb-2`}
                           >
-                            <BsBoxArrowRight className="fs-4 fw-bold me-2" />{" "}
-                            Đăng Xuất
+                            Thông tin tài khoản
+                          </button>
+                        </div>
+                        <div>
+                          <button className={`bg-body border-0  mb-2`}>
+                            Ưu đãi của tôi
+                          </button>
+                        </div>
+                        <div>
+                          <button className={`bg-body border-0  mb-2`}>
+                            Sản phẩm yêu thíc
+                          </button>
+                        </div>
+                        <div>
+                          <button className={`bg-body border-0  mb-2`}>
+                            Theo dõi đơn hàng
+                          </button>
+                        </div>
+                        <div>
+                          <button className={`bg-body border-0 `}>
+                            Đơn hàng dịch vụ tiện ích
                           </button>
                         </div>
                       </div>
-                      <div className="modal-footer">
+                      <div className={`modal-footer ${styles.logOut}`}>
+                        {/* <div className="d-flex align-items-center" id="logOut"> */}
+
+                        <button
+                          className="border-0 bg-body rounded-3 py-1 px-2 text-nowrap ms-2"
+                          onClick={handLogOut}
+                        >
+                          <BsBoxArrowRight className="fs-5 fw-bold me-2" /> Đăng
+                          Xuất
+                        </button>
                         <button
                           type="button"
-                          className="btn btn-secondary"
+                          class="btn btn-secondary"
                           data-bs-dismiss="modal"
                         >
                           Close
                         </button>
+                        {/* </div> */}
                       </div>
                     </div>
                   </div>

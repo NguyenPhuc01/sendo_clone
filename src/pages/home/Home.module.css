@@ -3,6 +3,65 @@
   height: 44px;
   font-size: 14px;
 }
-.fz{
-    font-size: 14px;
+.fz {
+  font-size: 14px;
+}
+.bgSP {
+  background-color: #f2f3f4;
+}
+.cardSize {
+  width: 205px !important;
+  height: 345px !important;
+  border-radius: 10px !important;
+}
+.fzCardText {
+  font-size: 14px;
+}
+.cardProduct {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  grid-template-rows: auto auto auto auto auto auto;
+}
+.cardImg {
+  border-radius: 10px;
+}
+
+@media only screen and (max-width: 739px) {
+  .cardProduct {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    gap: 10px;
+  }
+  .cardSize {
+    width: 100% !important;
+  }
+}
+@media only screen and (min-width: 740px) and (max-width: 999px) {
+  .cardProduct {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    gap: 20px;
+  }
+  .cardSize {
+    margin-left: 18px !important;
+    margin-right: 12px !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+@media only screen and (min-width: 1000px) and (max-width: 1199px) {
+  .cardProduct {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto auto auto;
+  }
+}
+@media only screen and (min-width: 1199px) and (max-width: 1399px) {
+  .cardProduct {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto;
+  }
 }
