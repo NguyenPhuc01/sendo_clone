@@ -1,11 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import styles from "../home/Home.module.css";
 import Header from "../../components/Layout/DefaultLayout/Header";
 import { Link } from "react-router-dom";
-import onTop from "../../components/onTop";
+import { BsArrowUpSquare } from "react-icons/bs";
+const axios = require("axios").default;
 
 const Home = () => {
+  const [product, setProduct] = useState([]);
+  // const [showTop, setShowTop] = useState(false);
+
+  const onTop = (e) => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    console.log(e);
+  };
+
+  const getProduct = async (data) => {
+    try {
+      const result = await axios({
+        method: "GET",
+        url: "http://khanh.tokyo/api/products",
+        data,
+      });
+      // console.log("day la result", result.data.data.data);
+      setProduct(result.data.data.data);
+    } catch (errors) {
+      console.log("loi");
+    }
+  };
+  // http://khanh.tokyo/api/products
+  useEffect(() => {
+    getProduct();
+  }, []);
+
+  console.log(product);
   return (
     <div>
       <Header />
@@ -142,251 +171,44 @@ const Home = () => {
           <Row>
             <Col lg="12" className="ps-0">
               <div className={`${styles.cardProduct}`}>
-                <Link
-                  to=""
-                  className={`card ${styles.cardSize} shadow text-decoration-none text-black mt-3 rounded  mx-2`}
-                >
-                  <img
-                    src="https://media3.scdn.vn/img4/2022/03_10/9DhkyfI44DyVk7qnHZdS_simg_b5529c_250x250_maxb.jpg"
-                    className={`${styles.cardImg}`}
-                    alt="..."
-                  />
-                  <div className="card-body p-2">
-                    <p className={`card-text ${styles.fzCardText} mt-1 mb-2`}>
-                      TECNO SPARK 7 2GB-32GB - Đen
-                    </p>
-                    <h5 className="card-title">2.390.000đ</h5>
-                  </div>
-                  <div className="d-flex justify-content-between p-1">
-                    <span>TP.HCM</span>
-                    <span>đã bán 2</span>
-                  </div>
-                </Link>
-                <Link
-                  to=""
-                  className={`card ${styles.cardSize} shadow text-decoration-none text-black mt-3 rounded  mx-2`}
-                >
-                  <img
-                    src="https://media3.scdn.vn/img4/2022/03_10/9DhkyfI44DyVk7qnHZdS_simg_b5529c_250x250_maxb.jpg"
-                    className={`${styles.cardImg}`}
-                    alt="..."
-                  />
-                  <div className="card-body p-2">
-                    <p className={`card-text ${styles.fzCardText} mt-1 mb-2`}>
-                      TECNO SPARK 7 2GB-32GB - Đen
-                    </p>
-                    <h5 className="card-title">2.390.000đ</h5>
-                  </div>
-                  <div className="d-flex justify-content-between p-1">
-                    <span>TP.HCM</span>
-                    <span>đã bán 2</span>
-                  </div>
-                </Link>
-                <Link
-                  to=""
-                  className={`card ${styles.cardSize} shadow text-decoration-none text-black mt-3 rounded  mx-2`}
-                >
-                  <img
-                    src="https://media3.scdn.vn/img4/2022/03_10/9DhkyfI44DyVk7qnHZdS_simg_b5529c_250x250_maxb.jpg"
-                    className={`${styles.cardImg}`}
-                    alt="..."
-                  />
-                  <div className="card-body p-2">
-                    <p className={`card-text ${styles.fzCardText} mt-1 mb-2`}>
-                      TECNO SPARK 7 2GB-32GB - Đen
-                    </p>
-                    <h5 className="card-title">2.390.000đ</h5>
-                  </div>
-                  <div className="d-flex justify-content-between p-1">
-                    <span>TP.HCM</span>
-                    <span>đã bán 2</span>
-                  </div>
-                </Link>
-                <Link
-                  to=""
-                  className={`card ${styles.cardSize} shadow text-decoration-none text-black mt-3 rounded  mx-2`}
-                >
-                  <img
-                    src="https://media3.scdn.vn/img4/2022/03_10/9DhkyfI44DyVk7qnHZdS_simg_b5529c_250x250_maxb.jpg"
-                    className={`${styles.cardImg}`}
-                    alt="..."
-                  />
-                  <div className="card-body p-2">
-                    <p className={`card-text ${styles.fzCardText} mt-1 mb-2`}>
-                      TECNO SPARK 7 2GB-32GB - Đen
-                    </p>
-                    <h5 className="card-title">2.390.000đ</h5>
-                  </div>
-                  <div className="d-flex justify-content-between p-1">
-                    <span>TP.HCM</span>
-                    <span>đã bán 2</span>
-                  </div>
-                </Link>
-                <Link
-                  to=""
-                  className={`card ${styles.cardSize} shadow text-decoration-none text-black mt-3 rounded  mx-2`}
-                >
-                  <img
-                    src="https://media3.scdn.vn/img4/2022/03_10/9DhkyfI44DyVk7qnHZdS_simg_b5529c_250x250_maxb.jpg"
-                    className={`${styles.cardImg}`}
-                    alt="..."
-                  />
-                  <div className="card-body p-2">
-                    <p className={`card-text ${styles.fzCardText} mt-1 mb-2`}>
-                      TECNO SPARK 7 2GB-32GB - Đen
-                    </p>
-                    <h5 className="card-title">2.390.000đ</h5>
-                  </div>
-                  <div className="d-flex justify-content-between p-1">
-                    <span>TP.HCM</span>
-                    <span>đã bán 2</span>
-                  </div>
-                </Link>
-                <Link
-                  to=""
-                  className={`card ${styles.cardSize} shadow text-decoration-none text-black mt-3 rounded  mx-2`}
-                >
-                  <img
-                    src="https://media3.scdn.vn/img4/2022/03_10/9DhkyfI44DyVk7qnHZdS_simg_b5529c_250x250_maxb.jpg"
-                    className={`${styles.cardImg}`}
-                    alt="..."
-                  />
-                  <div className="card-body p-2">
-                    <p className={`card-text ${styles.fzCardText} mt-1 mb-2`}>
-                      TECNO SPARK 7 2GB-32GB - Đen
-                    </p>
-                    <h5 className="card-title">2.390.000đ</h5>
-                  </div>
-                  <div className="d-flex justify-content-between p-1">
-                    <span>TP.HCM</span>
-                    <span>đã bán 2</span>
-                  </div>
-                </Link>
-                <Link
-                  to=""
-                  className={`card ${styles.cardSize} shadow text-decoration-none text-black mt-3 rounded  mx-2`}
-                >
-                  <img
-                    src="https://media3.scdn.vn/img4/2022/03_10/9DhkyfI44DyVk7qnHZdS_simg_b5529c_250x250_maxb.jpg"
-                    className={`${styles.cardImg}`}
-                    alt="..."
-                  />
-                  <div className="card-body p-2">
-                    <p className={`card-text ${styles.fzCardText} mt-1 mb-2`}>
-                      TECNO SPARK 7 2GB-32GB - Đen
-                    </p>
-                    <h5 className="card-title">2.390.000đ</h5>
-                  </div>
-                  <div className="d-flex justify-content-between p-1">
-                    <span>TP.HCM</span>
-                    <span>đã bán 2</span>
-                  </div>
-                </Link>
-                <Link
-                  to=""
-                  className={`card ${styles.cardSize} shadow text-decoration-none text-black mt-3 rounded  mx-2`}
-                >
-                  <img
-                    src="https://media3.scdn.vn/img4/2022/03_10/9DhkyfI44DyVk7qnHZdS_simg_b5529c_250x250_maxb.jpg"
-                    className={`${styles.cardImg}`}
-                    alt="..."
-                  />
-                  <div className="card-body p-2">
-                    <p className={`card-text ${styles.fzCardText} mt-1 mb-2`}>
-                      TECNO SPARK 7 2GB-32GB - Đen
-                    </p>
-                    <h5 className="card-title">2.390.000đ</h5>
-                  </div>
-                  <div className="d-flex justify-content-between p-1">
-                    <span>TP.HCM</span>
-                    <span>đã bán 2</span>
-                  </div>
-                </Link>
-                <Link
-                  to=""
-                  className={`card ${styles.cardSize} shadow text-decoration-none text-black mt-3 rounded  mx-2`}
-                >
-                  <img
-                    src="https://media3.scdn.vn/img4/2022/03_10/9DhkyfI44DyVk7qnHZdS_simg_b5529c_250x250_maxb.jpg"
-                    className={`${styles.cardImg}`}
-                    alt="..."
-                  />
-                  <div className="card-body p-2">
-                    <p className={`card-text ${styles.fzCardText} mt-1 mb-2`}>
-                      TECNO SPARK 7 2GB-32GB - Đen
-                    </p>
-                    <h5 className="card-title">2.390.000đ</h5>
-                  </div>
-                  <div className="d-flex justify-content-between p-1">
-                    <span>TP.HCM</span>
-                    <span>đã bán 2</span>
-                  </div>
-                </Link>
-                <Link
-                  to=""
-                  className={`card ${styles.cardSize} shadow text-decoration-none text-black mt-3 rounded  mx-2`}
-                >
-                  <img
-                    src="https://media3.scdn.vn/img4/2022/03_10/9DhkyfI44DyVk7qnHZdS_simg_b5529c_250x250_maxb.jpg"
-                    className={`${styles.cardImg}`}
-                    alt="..."
-                  />
-                  <div className="card-body p-2">
-                    <p className={`card-text ${styles.fzCardText} mt-1 mb-2`}>
-                      TECNO SPARK 7 2GB-32GB - Đen
-                    </p>
-                    <h5 className="card-title">2.390.000đ</h5>
-                  </div>
-                  <div className="d-flex justify-content-between p-1">
-                    <span>TP.HCM</span>
-                    <span>đã bán 2</span>
-                  </div>
-                </Link>
-                <Link
-                  to=""
-                  className={`card ${styles.cardSize} shadow text-decoration-none text-black mt-3 rounded  mx-2`}
-                >
-                  <img
-                    src="https://media3.scdn.vn/img4/2022/03_10/9DhkyfI44DyVk7qnHZdS_simg_b5529c_250x250_maxb.jpg"
-                    className={`${styles.cardImg}`}
-                    alt="..."
-                  />
-                  <div className="card-body p-2">
-                    <p className={`card-text ${styles.fzCardText} mt-1 mb-2`}>
-                      TECNO SPARK 7 2GB-32GB - Đen
-                    </p>
-                    <h5 className="card-title">2.390.000đ</h5>
-                  </div>
-                  <div className="d-flex justify-content-between p-1">
-                    <span>TP.HCM</span>
-                    <span>đã bán 2</span>
-                  </div>
-                </Link>
-                <Link
-                  to=""
-                  className={`card ${styles.cardSize} shadow text-decoration-none text-black mt-3 rounded  mx-2`}
-                >
-                  <img
-                    src="https://media3.scdn.vn/img4/2022/03_10/9DhkyfI44DyVk7qnHZdS_simg_b5529c_250x250_maxb.jpg"
-                    className={`${styles.cardImg}`}
-                    alt="..."
-                  />
-                  <div className="card-body p-2">
-                    <p className={`card-text ${styles.fzCardText} mt-1 mb-2`}>
-                      TECNO SPARK 7 2GB-32GB - Đen
-                    </p>
-                    <h5 className="card-title">2.390.000đ</h5>
-                  </div>
-                  <div className="d-flex justify-content-between p-1">
-                    <span>TP.HCM</span>
-                    <span>đã bán 2</span>
-                  </div>
-                </Link>
+                {product.map((e, i) => {
+                  return (
+                    <Link
+                      to=""
+                      className={`card ${styles.cardSize} shadow text-decoration-none text-black mt-3 rounded  mx-2`}
+                      key={i}
+                    >
+                      <img
+                        src={e.avatar}
+                        className={`${styles.cardImg}`}
+                        alt="..."
+                      />
+                      <div className="card-body p-2">
+                        <p
+                          className={`card-text ${styles.fzCardText} mt-1 mb-2`}
+                        >
+                          {e.name}
+                        </p>
+                        <h5 className="card-title">{e.price}</h5>
+                      </div>
+                      <div className="d-flex justify-content-between p-1">
+                        <span>TP.HCM</span>
+                        <span>đã bán 2</span>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
             </Col>
           </Row>
           <div className="fixed-bottom ">
-            <button> ontop</button>
+            <button
+              onClick={onTop}
+              className="border-0 fs-3 shadow  mb-3 ms-3 pb-2 px-2 bg-body rounded text-danger "
+            >
+              {" "}
+              <BsArrowUpSquare />
+            </button>
           </div>
         </Container>
       </Container>

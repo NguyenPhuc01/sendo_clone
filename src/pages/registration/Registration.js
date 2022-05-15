@@ -119,9 +119,12 @@ const Registration = () => {
                   )}
                 </div>
               </div>
-              <button type="submit" className="btn btn-primary d-flex ">
-                Register
-              </button>
+
+              <div className="">
+                <button type="submit" className="btn btn-primary  w-100 ">
+               Đăng Ký
+                </button>
+              </div>
               {/* <Link
                 to=""
                 type="submit"
