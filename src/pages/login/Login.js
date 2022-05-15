@@ -39,24 +39,11 @@ const Login = () => {
     postApi(data);
   };
 
-  // const handlLogin = () => {
-  //   const values = getValues();
-  //   if (values.email && values.password === "admin") {
-  //     setLoading(true);
-  //     setTimeout(() => {
-  //       setLoading(false);
-
-  //       navigate("/");
-  //     }, 2000);
-  //   } else {
-  //     alert("Tên đăng nhập hoặc mật khẩu không đúng");
-  //   }
-  // };
   return (
     <Container fluid>
       <Row className={styles.height}>
         <Col lg="8">
-          <div>
+          <div className="d-none d-lg-block">
             <img src="bg-01.jpg" alt="" className={`${styles.imgLeft} w-100`} />
           </div>
         </Col>

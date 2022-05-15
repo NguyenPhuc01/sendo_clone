@@ -18,7 +18,6 @@ const Registration = () => {
 
   const postApi = async (data) => {
     try {
-
       const result = await axios({
         method: "POST",
         url: "http://khanh.tokyo/api/register",
@@ -135,7 +134,7 @@ const Registration = () => {
           </div>
         </Col>
         <Col lg="8">
-          <div>
+          <div className="d-none d-lg-block">
             <img
               src="../bg-01.jpg"
               alt=""

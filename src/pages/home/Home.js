@@ -3,6 +3,8 @@ import { Col, Container, Row } from "react-bootstrap";
 import styles from "../home/Home.module.css";
 import Header from "../../components/Layout/DefaultLayout/Header";
 import { Link } from "react-router-dom";
+import onTop from "../../components/onTop";
+
 const Home = () => {
   return (
     <div>
@@ -137,7 +139,7 @@ const Home = () => {
       </Container>
       <Container fluid className={`${styles.bgSP}`}>
         <Container>
-          <Row >
+          <Row>
             <Col lg="12" className="ps-0">
               <div className={`${styles.cardProduct}`}>
                 <Link
@@ -383,6 +385,9 @@ const Home = () => {
               </div>
             </Col>
           </Row>
+          <div className="fixed-bottom ">
+            <button> ontop</button>
+          </div>
         </Container>
       </Container>
     </div>
