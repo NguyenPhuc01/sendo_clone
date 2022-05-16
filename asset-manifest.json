@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/sendo_cloneT3h/static/css/main.53eb1dbc.css",
+    "main.js": "/sendo_cloneT3h/static/js/main.9d2136dd.js",
+    "static/js/787.28cb0dcd.chunk.js": "/sendo_cloneT3h/static/js/787.28cb0dcd.chunk.js",
+    "index.html": "/sendo_cloneT3h/index.html",
+    "main.53eb1dbc.css.map": "/sendo_cloneT3h/static/css/main.53eb1dbc.css.map",
+    "main.9d2136dd.js.map": "/sendo_cloneT3h/static/js/main.9d2136dd.js.map",
+    "787.28cb0dcd.chunk.js.map": "/sendo_cloneT3h/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.53eb1dbc.css",
+    "static/js/main.9d2136dd.js"
+  ]
+}
