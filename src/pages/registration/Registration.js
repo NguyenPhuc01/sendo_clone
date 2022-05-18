@@ -23,7 +23,7 @@ const Registration = () => {
         url: "http://khanh.tokyo/api/register",
         data,
       });
-      console.log("day la result", result.data.data);
+      // console.log("day la result", result.data.data);
       navigate("/login");
     } catch (errors) {
       console.log("loi");
@@ -122,7 +122,7 @@ const Registration = () => {
 
               <div className="">
                 <button type="submit" className="btn btn-primary  w-100 ">
-               Đăng Ký
+                  Đăng Ký
                 </button>
               </div>
               {/* <Link

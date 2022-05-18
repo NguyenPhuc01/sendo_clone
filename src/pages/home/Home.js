@@ -6,21 +6,29 @@ import { Link } from "react-router-dom";
 import { BsArrowUpSquare } from "react-icons/bs";
 const axios = require("axios").default;
 
+const pages = [1, 2, 3];
 const Home = () => {
   const [product, setProduct] = useState([]);
-  // const [showTop, setShowTop] = useState(false);
+  const [page, setPage] = useState(1);
+  // useEffect(() => {
+  //   const handleScrol = (e) => {
+  //     console.log(window.scrollY);
+  //   };
+  //   window.addEventListener("scroll", handleScrol);
+  //   return;
+  // }, []);
 
   const onTop = (e) => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
-    console.log(e);
+    // console.log(e);
   };
 
   const getProduct = async (data) => {
     try {
       const result = await axios({
         method: "GET",
-        url: "http://khanh.tokyo/api/products",
+        url: `http://khanh.tokyo/api/products?page=${page}`,
         data,
       });
       // console.log("day la result", result.data.data.data);
@@ -32,9 +40,9 @@ const Home = () => {
   // http://khanh.tokyo/api/products
   useEffect(() => {
     getProduct();
-  }, []);
+  }, [page]);
 
-  console.log(product);
+  // console.log(product);
   return (
     <div>
       <Header />
@@ -166,6 +174,7 @@ const Home = () => {
           </Col>
         </Row>
       </Container>
+
       <Container fluid className={`${styles.bgSP}`}>
         <Container>
           <Row>
@@ -201,16 +210,39 @@ const Home = () => {
               </div>
             </Col>
           </Row>
-          <div className="fixed-bottom ">
-            <button
-              onClick={onTop}
-              className="border-0 fs-3 shadow  mb-3 ms-3 pb-2 px-2 bg-body rounded text-danger "
-            >
-              {" "}
-              <BsArrowUpSquare />
-            </button>
-          </div>
+          <Row>
+            <Col>
+              <div className="d-flex justify-content-center mt-5">
+                {pages.map((e, i) => {
+                  return (
+                    <button
+                      className="border border-danger mx-2"
+                      onClick={() => {
+                        setPage(i + 1);
+                      }}
+                    >
+                      {e}
+                    </button>
+                  );
+                })}
+              </div>
+            </Col>
+          </Row>
         </Container>
+
+        <Row>
+          <Col>
+            <div className="sticky-bottom ">
+              <button
+                onClick={onTop}
+                className="border-0 fs-3 shadow  mb-3 ms-3 pb-2 px-2 bg-body rounded text-danger "
+              >
+                {" "}
+                <BsArrowUpSquare />
+              </button>
+            </div>
+          </Col>
+        </Row>
       </Container>
     </div>
   );
