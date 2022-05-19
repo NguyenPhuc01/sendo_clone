@@ -1,0 +1,39 @@
+.szImg {
+  width: 130px;
+  height: 88px;
+}
+.fz {
+  font-size: 12px;
+  font-weight: 700;
+}
+.description {
+  font-size: 12px;
+  font-weight: 400;
+  color: #6f787e;
+  line-height: 1.6rem;
+  cursor: pointer;
+}
+.szBox {
+  width: 320px;
+  height: 170px;
+  cursor: pointer;
+}
+.widthDescription {
+  width: 210px;
+}
+.bgFooter {
+  background-color: #f2f3f4;
+}
+.szStore {
+  width: 120px;
+  height: 40px;
+  cursor: pointer;
+}
+.widthRegistration {
+  width: 655px;
+  height: 210px;
+}
+.widthCompany {
+  width: 545px;
+  height: 210px;
+}

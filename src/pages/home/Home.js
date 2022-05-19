@@ -6,40 +6,32 @@ import { Link } from "react-router-dom";
 import { BsArrowUpSquare } from "react-icons/bs";
 import Banner from "../../components/Banner/Banner.js";
 import "../../App.css";
+import Footer from "../../components/Footer/Footer";
 const axios = require("axios").default;
 
 const pages = [1, 2, 3];
 const Home = () => {
   const [product, setProduct] = useState([]);
   const [page, setPage] = useState(1);
-  // useEffect(() => {
-  //   const handleScrol = (e) => {
-  //     console.log(window.scrollY);
-  //   };
-  //   window.addEventListener("scroll", handleScrol);
-  //   return;
-  // }, []);
+  useEffect(() => {
+    const handleScrol = (e) => {
+      const onTop = document.getElementById("onTheTop");
+      console.log(window.scrollY);
+      if (window.scrollY > 100) {
+        onTop.classList.remove("d-none");
+      } else {
+        onTop.classList.add("d-none");
+      }
+    };
+    window.addEventListener("scroll", handleScrol);
+    return;
+  }, []);
 
   const onTop = (e) => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
-    // console.log(e);
   };
 
-  // const getProduct = async (data) => {
-  //   try {
-  //     const result = await axios({
-  //       method: "GET",
-  //       url: `http://khanh.tokyo/api/products?page=${page}`,
-  //       data,
-  //     });
-  //     // console.log("day la result", result.data.data.data);
-  //     setProduct(result.data.data.data);
-  //   } catch (errors) {
-  //     console.log("loi");
-  //   }
-  // };
-  // http://khanh.tokyo/api/products
   useEffect(() => {
     axios
       .get(`http://khanh.tokyo/api/products?page=${page}`)
@@ -220,11 +212,11 @@ const Home = () => {
           </Row>
           <Row>
             <Col>
-              <div className="d-flex justify-content-center mt-5">
+              <div className="d-flex justify-content-center mt-5 mb-3">
                 {pages.map((e, i) => {
                   return (
                     <button
-                      className="border border-danger mx-2"
+                      className="border-0 shadow  mb-3 ms-3 pb-2 px-2 bg-body rounded mx-3"
                       onClick={() => {
                         setPage(i + 1);
                       }}
@@ -238,20 +230,22 @@ const Home = () => {
           </Row>
         </Container>
 
-        <Row>
+        {/* <Row>
           <Col>
-            <div className="sticky-bottom ">
+            <div className="fixed-bottom mb-5">
               <button
                 onClick={onTop}
-                className="border-0 fs-3 shadow  mb-3 ms-3 pb-2 px-2 bg-body rounded text-danger "
+                className="border-0 fs-3 shadow  mb-3 ms-3 pb-2 px-2 bg-body rounded text-danger d-none"
+                id="onTheTop"
               >
                 {" "}
                 <BsArrowUpSquare />
               </button>
             </div>
           </Col>
-        </Row>
+        </Row> */}
       </Container>
+      <Footer />
     </div>
   );
 };
