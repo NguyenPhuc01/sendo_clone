@@ -4,6 +4,8 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Example from "../../components/loading/Loading";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const axios = require("axios").default;
 
 const Login = () => {
@@ -18,9 +20,9 @@ const Login = () => {
   const navigate = useNavigate();
 
   const postApi = async (data) => {
-    setLoading(true);
-
     try {
+      setLoading(true);
+
       const result = await axios({
         method: "POST",
         url: "http://khanh.tokyo/api/login",
@@ -32,7 +34,8 @@ const Login = () => {
       setLoading(false);
       navigate("/");
     } catch (errors) {
-      console.log("loi");
+      setLoading(false);
+      toast("Tên đăng nhập hoặc mật khẩu không đúng !. Vui lòng kiểm tra lại");
     }
   };
   const onSubmit = (data) => {
@@ -120,7 +123,7 @@ const Login = () => {
                     <button type="submit" className="btn btn-primary  ">
                       Đăng Nhập
                     </button>
-
+                    <ToastContainer />;
                     <Link
                       to="/Registration"
                       className="text-white text-decoration-none "

@@ -4,6 +4,8 @@ import styles from "../home/Home.module.css";
 import Header from "../../components/Layout/DefaultLayout/Header";
 import { Link } from "react-router-dom";
 import { BsArrowUpSquare } from "react-icons/bs";
+import Banner from "../../components/Banner/Banner.js";
+import "../../App.css";
 const axios = require("axios").default;
 
 const pages = [1, 2, 3];
@@ -24,22 +26,32 @@ const Home = () => {
     // console.log(e);
   };
 
-  const getProduct = async (data) => {
-    try {
-      const result = await axios({
-        method: "GET",
-        url: `http://khanh.tokyo/api/products?page=${page}`,
-        data,
-      });
-      // console.log("day la result", result.data.data.data);
-      setProduct(result.data.data.data);
-    } catch (errors) {
-      console.log("loi");
-    }
-  };
+  // const getProduct = async (data) => {
+  //   try {
+  //     const result = await axios({
+  //       method: "GET",
+  //       url: `http://khanh.tokyo/api/products?page=${page}`,
+  //       data,
+  //     });
+  //     // console.log("day la result", result.data.data.data);
+  //     setProduct(result.data.data.data);
+  //   } catch (errors) {
+  //     console.log("loi");
+  //   }
+  // };
   // http://khanh.tokyo/api/products
   useEffect(() => {
-    getProduct();
+    axios
+      .get(`http://khanh.tokyo/api/products?page=${page}`)
+      .then(function (response) {
+        setProduct(response.data.data.data);
+
+        console.log(response.data.data.data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });
   }, [page]);
 
   // console.log(product);
@@ -164,12 +176,8 @@ const Home = () => {
 
         <Row>
           <Col className="px-0">
-            <div className="pb-3">
-              <img
-                src="https://media3.scdn.vn/img4/2022/05_11/66fCtpSaD7CMb8xvovov.png"
-                alt=""
-                className="img-fluid"
-              />
+            <div>
+              <Banner />
             </div>
           </Col>
         </Row>

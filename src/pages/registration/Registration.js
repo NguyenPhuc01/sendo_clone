@@ -2,7 +2,7 @@
 import styles from "../login/Login.module.css";
 import { Container, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const axios = require("axios").default;
 
 const Registration = () => {
@@ -11,19 +11,17 @@ const Registration = () => {
   const {
     register,
     handleSubmit,
-    // getValues,
 
     formState: { errors },
   } = useForm();
 
   const postApi = async (data) => {
     try {
-      const result = await axios({
+      await axios({
         method: "POST",
         url: "http://khanh.tokyo/api/register",
         data,
       });
-      // console.log("day la result", result.data.data);
       navigate("/login");
     } catch (errors) {
       console.log("loi");
@@ -32,13 +30,6 @@ const Registration = () => {
   const onSubmit = (data) => {
     postApi(data);
   };
-
-  // const handlRegister = () => {
-  //   const values = getValues();
-
-  // };
-
-  // const [api, setApi] = useState([]);
 
   return (
     <Container fluid>
