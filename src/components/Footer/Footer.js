@@ -33,14 +33,14 @@ const Footer = () => {
   console.log(tutorial);
   return (
     <div>
-      <Container fluid className="my-3">
+      <Container fluid>
         <Container>
           <Row>
-            <Col>
-              <div className="d-flex justify-content-between ">
+            <Col className="px-0">
+              <div className={`${styles.super}`}>
                 {tutorial.map((e) => {
                   return (
-                    <div className={`${styles.szBox}`}>
+                    <div className={`${styles.szBox}`} key={e}>
                       <div className="d-flex justify-content-center">
                         <img src={e.img} alt="" className={`${styles.szImg}`} />
                       </div>
@@ -64,9 +64,9 @@ const Footer = () => {
       <Container fluid className={` ${styles.bgFooter} pt-3`}>
         <Container>
           <Row>
-            <Col>
+            <Col className="px-0">
               <div className="d-flex justify-content-between">
-                <ul className="list-unstyled ">
+                <ul className={`${styles.szAbout} list-unstyled`}>
                   <li className={`${styles.fz} text-uppercase mt-1`}>
                     Về chúng tôi
                   </li>
@@ -81,7 +81,7 @@ const Footer = () => {
                   </li>
                 </ul>
 
-                <ul className="list-unstyled">
+                <ul className={`${styles.szAbout} list-unstyled`}>
                   <li className={`${styles.fz} text-uppercase mt-1`}>
                     DÀNH CHO NGƯỜI MUA
                   </li>
@@ -102,7 +102,7 @@ const Footer = () => {
                   </li>
                 </ul>
 
-                <ul className="list-unstyled">
+                <ul className={`${styles.szAbout} list-unstyled`}>
                   <li className={`${styles.fz} text-uppercase mt-1`}>
                     DÀNH CHO NGƯỜI BÁN
                   </li>
@@ -120,7 +120,7 @@ const Footer = () => {
                   </li>
                 </ul>
 
-                <ul className="list-unstyled">
+                <ul className={`${styles.szAbout} list-unstyled`}>
                   <li className={`${styles.fz} text-uppercase mt-1`}>
                     TẢI ỨNG DỤNG SENDO
                   </li>
@@ -128,29 +128,31 @@ const Footer = () => {
                     Mang thế giới mua sắm của Sendo trong tầm tay bạn
                   </li>
 
-                  <div className="d-flex mt-3">
-                    <div>
-                      <img
-                        src="https://media3.scdn.vn/img4/2020/12_16/5lUTWdk3DXr8nlC9MDII.png"
-                        alt=""
-                        className={`${styles.szStore} me-2`}
-                      />
+                  <div className={`${styles.store}`}>
+                    <div className="d-md-flex mt-3">
+                      <div>
+                        <img
+                          src="https://media3.scdn.vn/img4/2020/12_16/5lUTWdk3DXr8nlC9MDII.png"
+                          alt=""
+                          className={`${styles.szStore} me-2`}
+                        />
+                      </div>
+                      <div>
+                        <img
+                          src="https://media3.scdn.vn/img4/2021/10_26/0ZARLASzVrfL92924rzW.png"
+                          alt=""
+                          className={`${styles.szStore} `}
+                        />
+                      </div>
                     </div>
-                    <div>
+
+                    <div className="mt-2">
                       <img
-                        src="https://media3.scdn.vn/img4/2021/10_26/0ZARLASzVrfL92924rzW.png"
+                        src="https://media3.scdn.vn/img4/2021/03_19/AMV086JNpEbm4OGAvVng.png"
                         alt=""
                         className={`${styles.szStore}`}
                       />
                     </div>
-                  </div>
-
-                  <div className="mt-2">
-                    <img
-                      src="https://media3.scdn.vn/img4/2021/03_19/AMV086JNpEbm4OGAvVng.png"
-                      alt=""
-                      className={`${styles.szStore}`}
-                    />
                   </div>
                 </ul>
               </div>
@@ -162,7 +164,7 @@ const Footer = () => {
       <Container fluid className="bg-black text-light">
         <Container>
           <Row>
-            <Col>
+            <Col className="ps-0 col-5">
               <div className="d-flex justify-content-between">
                 <div className={`d-flex flex-column ${styles.widthCompany} `}>
                   <span className={`${styles.fz}  mt-1`}>
@@ -184,7 +186,7 @@ const Footer = () => {
                   <span className={`${styles.description} mt-1 text-light`}>
                     Email: lienhe@sendo.vn
                   </span>
-                  <div className="d-flex ">
+                  <div className="d-md-flex ">
                     <div>
                       <img
                         src="https://media3.scdn.vn/img4/2020/12_16/XhpGDnvWqrlKeHLst3aS.png"
@@ -201,18 +203,23 @@ const Footer = () => {
                     </div>
                   </div>
                 </div>
-
-                <div className={`${styles.widthRegistration}`}>
-                  <span className={`${styles.fz}  mt-1`}>
-                    Đăng ký nhận bản tin ưu đãi khủng từ Sendo
-                  </span>
-                  <div className="mt-2">
+              </div>
+            </Col>
+            <Col className="col-7 pe-0">
+              <div className={`${styles.widthRegistration}`}>
+                <span className={`${styles.fz}  mt-1`}>
+                  Đăng ký nhận bản tin ưu đãi khủng từ Sendo
+                </span>
+                <div className={`${styles.email} mt-2 `}>
+                  <div className="">
                     <input
                       type="email"
                       placeholder="Email của bạn là "
-                      className="w-50 me-1 py-1 rounded-3 border-0 ps-2"
+                      className="me-1 py-1 rounded-3 border-0 ps-2 "
                     />
-                    <button className="bg-danger text-light py-1 px-3 fw-bold  rounded-3 ">
+                  </div>
+                  <div className="">
+                    <button className="bg-danger text-light py-1 px-md-3 fw-bold text-nowrap  rounded-3 ">
                       {" "}
                       Đăng ký
                     </button>

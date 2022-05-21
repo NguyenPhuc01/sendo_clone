@@ -16,7 +16,6 @@ const Home = () => {
   useEffect(() => {
     const handleScrol = (e) => {
       const onTop = document.getElementById("onTheTop");
-      console.log(window.scrollY);
       if (window.scrollY > 100) {
         onTop.classList.remove("d-none");
       } else {
@@ -24,8 +23,20 @@ const Home = () => {
       }
     };
     window.addEventListener("scroll", handleScrol);
-    return;
   }, []);
+  const handleNextPage = (i) => {
+    setPage(i + 1);
+
+    const animation = setInterval(() => {
+      document.body.scrollTop = 100;
+      document.documentElement.scrollTop = 100;
+      console.log("log");
+      clearInterval(animation, 200);
+    }, 200);
+ 
+  };
+
+
 
   const onTop = (e) => {
     document.body.scrollTop = 0;
@@ -178,7 +189,7 @@ const Home = () => {
       <Container fluid className={`${styles.bgSP}`}>
         <Container>
           <Row>
-            <Col lg="12" className="ps-0">
+            <Col lg="12" className="">
               <div className={`${styles.cardProduct}`}>
                 {product.map((e, i) => {
                   return (
@@ -212,13 +223,14 @@ const Home = () => {
           </Row>
           <Row>
             <Col>
-              <div className="d-flex justify-content-center mt-5 mb-3">
+              <div className={`d-flex justify-content-center mt-5 mb-3`}>
                 {pages.map((e, i) => {
                   return (
                     <button
                       className="border-0 shadow  mb-3 ms-3 pb-2 px-2 bg-body rounded mx-3"
+                      key={i}
                       onClick={() => {
-                        setPage(i + 1);
+                        handleNextPage(i);
                       }}
                     >
                       {e}
@@ -230,9 +242,9 @@ const Home = () => {
           </Row>
         </Container>
 
-        {/* <Row>
+        <Row>
           <Col>
-            <div className="fixed-bottom mb-5">
+            <div className={`fixed-bottom mb-5 ${styles.widthOntop}`}>
               <button
                 onClick={onTop}
                 className="border-0 fs-3 shadow  mb-3 ms-3 pb-2 px-2 bg-body rounded text-danger d-none"
@@ -243,7 +255,7 @@ const Home = () => {
               </button>
             </div>
           </Col>
-        </Row> */}
+        </Row>
       </Container>
       <Footer />
     </div>
