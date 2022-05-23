@@ -53,9 +53,14 @@ const Header = () => {
           <Row className={`${styles.sizeLogo} d-flex align-items-center`}>
             <Col lg="2" md="3" sm="3" xs="4" className="px-0">
               <div className="d-flex justify-content-around">
-                <div>
-                  <img src="./sendo.jpg" alt="" className="" />
-                </div>
+                <button
+                  className={`${styles.bg} border-0`}
+                  onClick={() => {
+                    navigate("/");
+                  }}
+                >
+                  <img src="../../sendo.jpg" alt="" className="" />
+                </button>
                 <div className="fw-bold fs-4 d-none d-lg-block">
                   <BsGrid />
                 </div>

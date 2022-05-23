@@ -161,8 +161,8 @@ const Footer = () => {
         </Container>
       </Container>
 
-      <Container fluid className="bg-black text-light">
-        <Container>
+      <Container fluid className="bg-black text-light ">
+        <Container className="px-0">
           <Row>
             <Col className="ps-0 col-5">
               <div className="d-flex justify-content-between">
@@ -205,12 +205,12 @@ const Footer = () => {
                 </div>
               </div>
             </Col>
-            <Col className="col-7 pe-0">
+            <Col className="col-7 pe-0 d-flex flex-column align-items-center">
               <div className={`${styles.widthRegistration}`}>
                 <span className={`${styles.fz}  mt-1`}>
                   Đăng ký nhận bản tin ưu đãi khủng từ Sendo
                 </span>
-                <div className={`${styles.email} mt-2 `}>
+                <div className={`${styles.email} mt-2 d-flex`}>
                   <div className="">
                     <input
                       type="email"
@@ -219,7 +219,7 @@ const Footer = () => {
                     />
                   </div>
                   <div className="">
-                    <button className="bg-danger text-light py-1 px-md-3 fw-bold text-nowrap  rounded-3 ">
+                    <button className="bg-danger text-light py-1 px-md-2 fw-bold text-nowrap border-0 rounded-3 m-0 mt-">
                       {" "}
                       Đăng ký
                     </button>

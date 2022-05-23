@@ -3,7 +3,7 @@ import styles from "./Login.module.css";
 import { Container, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import Example from "../../components/loading/Loading";
+import Example from "../../components/Loading/Loading";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const axios = require("axios").default;

@@ -1,0 +1,27 @@
+.bgDetail {
+  background-color: #f2f3f4;
+}
+.iconShop {
+  width: 55px;
+  height: 20px;
+}
+.count{
+    width: 40px;
+    height: 32px;
+}
+.moTa{
+  width: 100%;
+  word-break: break-all;
+
+}
+.iconForYou{
+  width: 24px;
+  height: 24px;
+}
+
+@media only screen and (max-width: 739px) {
+
+  .iconSale{
+    margin-top: 24px;
+  }
+}

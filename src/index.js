@@ -7,11 +7,13 @@ import "./index.css";
 // import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./pages/home/Home";
-import Login from "./pages/login/Login";
-import Registration from "./pages/registration/Registration";
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
+import Registration from "./pages/Registration/Registration";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import DetailProduct from "./pages/Detail/DetailProduct";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -21,7 +23,7 @@ root.render(
         <Route path="/" element={<Home />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Registration" element={<Registration />} />
-        {/* <Route path="/" element={<App />} /> */}
+        <Route path="/product/:id/:slug" element={<DetailProduct />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

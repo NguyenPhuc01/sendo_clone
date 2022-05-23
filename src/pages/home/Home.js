@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import styles from "../home/Home.module.css";
+import styles from "../Home/Home.module.css";
 import Header from "../../components/Layout/DefaultLayout/Header";
 import { Link } from "react-router-dom";
 import { BsArrowUpSquare } from "react-icons/bs";
@@ -45,12 +45,12 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get(`http://khanh.tokyo/api/products?page=${page}`)
+      .get(`http://khanh.tokyo/api/products?page=${page}&limit=12&id=2`)
       .then(function (response) {
         setProduct(response.data.data.data);
 
         console.log(response.data.data.data);
-      })
+      })  
       .catch(function (error) {
         // handle error
         console.log(error);
@@ -191,25 +191,25 @@ const Home = () => {
           <Row>
             <Col lg="12" className="">
               <div className={`${styles.cardProduct}`}>
-                {product.map((e, i) => {
+                {product.map((product, i) => {
                   return (
                     <Link
-                      to=""
+                      to={`product/${product.id}/${product.slug}`}
                       className={`card ${styles.cardSize} shadow text-decoration-none text-black mt-3 rounded  mx-2`}
                       key={i}
                     >
                       <img
-                        src={e.avatar}
+                        src={product.avatar}
                         className={`${styles.cardImg}`}
                         alt="..."
                       />
-                      <div className="card-body p-2">
+                      <div className={`card-body p-2`}>
                         <p
                           className={`card-text ${styles.fzCardText} mt-1 mb-2`}
                         >
-                          {e.name}
+                          {product.name}
                         </p>
-                        <h5 className="card-title">{e.price}</h5>
+                        <h5 className="card-title">{product.price}</h5>
                       </div>
                       <div className="d-flex justify-content-between p-1">
                         <span>TP.HCM</span>

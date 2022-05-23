@@ -14,7 +14,7 @@
   height: auto !important;
   border-radius: 10px !important;
 }
-.widthOntop{
+.widthOntop {
   width: 80px;
   height: 80px;
 }
@@ -35,10 +35,9 @@
     display: grid;
     grid-template-columns: auto auto;
     grid-template-rows: auto auto;
-
   }
   .cardSize {
-    width:170px !important;
+    width: 170px !important;
   }
 }
 @media only screen and (min-width: 740px) and (max-width: 999px) {

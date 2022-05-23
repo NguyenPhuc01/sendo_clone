@@ -1,5 +1,5 @@
 // import React, { useEffect, useState } from "react";
-import styles from "../login/Login.module.css";
+import styles from "../Login/Login.module.css";
 import { Container, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
