@@ -5,6 +5,7 @@ import { BsGrid, BsSearch, BsHandbag } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { BsBoxArrowRight, BsPersonCircle } from "react-icons/bs";
 
+
 const Header = () => {
   const navigate = useNavigate();
   const infor = localStorage.getItem("infor");
@@ -72,7 +73,7 @@ const Header = () => {
                   <div className="d-flex">
                     <input
                       type="search"
-                      className="form-control w-100"
+                      className="form-control w-100 shadow-none"
                       id="exampleInputEmail1"
                       aria-describedby="emailHelp"
                       placeholder="Tìm kiếm trên Sendo..."

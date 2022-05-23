@@ -23,14 +23,16 @@ const DetailProduct = () => {
         // handle error
         console.log(error);
       });
+
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }, []);
 
   console.log(product);
   return (
     <div>
       <Header />
-      <Container fluid className={`${styles.bgDetail}`}>
-        <Container className="bg-body px-0">
+        <Container className="bg-body  shadow my-3">
           <Row>
             <Col lg="5">
               <div>
@@ -48,7 +50,7 @@ const DetailProduct = () => {
                   <img
                     src="https://media3.scdn.vn/img4/2020/07_30/h6fJaiL5WkEbDU2eQRZb.png"
                     alt=""
-                    className={`${styles.iconShop} mt-1 me-2 d-none d-sm-block`}
+                    className={`${styles.iconShop} mt-1 me-2 d-none d-sm-block rounded-3`}
                   />
                   <h5>{product.name}</h5>
                 </div>
@@ -158,7 +160,10 @@ const DetailProduct = () => {
             </Col>
           </Row>
         </Container>
-        <Footer/>
+
+      <Container fluid className={`${styles.bgDetail}`}>
+        <Footer />
+
       </Container>
     </div>
   );

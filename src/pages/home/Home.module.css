@@ -27,6 +27,7 @@
   grid-template-rows: auto auto auto auto auto auto;
 }
 .cardImg {
+  height: 200px;
   border-radius: 10px;
 }
 
@@ -37,7 +38,11 @@
     grid-template-rows: auto auto;
   }
   .cardSize {
-    width: 170px !important;
+    width: auto !important;
+  }
+  .cardImg {
+    height: 150px;
+    border-radius: 10px;
   }
 }
 @media only screen and (min-width: 740px) and (max-width: 999px) {

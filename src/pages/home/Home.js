@@ -45,7 +45,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get(`http://khanh.tokyo/api/products?page=${page}&limit=12&id=2`)
+      .get(`http://khanh.tokyo/api/products?page=${page}&limit=18&id=2`)
       .then(function (response) {
         setProduct(response.data.data.data);
 
@@ -209,7 +209,7 @@ const Home = () => {
                         >
                           {product.name}
                         </p>
-                        <h5 className="card-title">{product.price}</h5>
+                        <h6 className="card-title">{product.price}</h6>
                       </div>
                       <div className="d-flex justify-content-between p-1">
                         <span>TP.HCM</span>
