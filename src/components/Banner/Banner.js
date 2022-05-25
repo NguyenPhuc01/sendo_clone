@@ -12,10 +12,25 @@ const Banner = () => {
       >
         <div className="carousel-inner ">
           <div className="carousel-item active" data-bs-interval="3000">
-            <img src="https://media3.scdn.vn/img4/2022/05_11/66fCtpSaD7CMb8xvovov.png" className="d-block  img-fluid" alt="..." />
+            <img
+              src="https://media3.scdn.vn/img4/2022/05_11/66fCtpSaD7CMb8xvovov.png"
+              className="d-block  img-fluid"
+              alt="..."
+            />
           </div>
           <div className="carousel-item" data-bs-interval="5000">
-            <img src="https://media3.scdn.vn/img4/2022/05_18/nQSd1vZ9VZv35kxxFiHV.png" className="d-block  img-fluid"  alt="..." />
+            <img
+              src="https://media3.scdn.vn/img4/2022/05_18/nQSd1vZ9VZv35kxxFiHV.png"
+              className="d-block  img-fluid"
+              alt="..."
+            />
+          </div>
+          <div className="carousel-item" data-bs-interval="7000">
+            <img
+              src="https://media3.scdn.vn/img4/2022/05_25/mWWUljWkoSBUsPIO2YZW.png"
+              className="d-block  img-fluid"
+              alt="..."
+            />
           </div>
         </div>
         <button
@@ -24,7 +39,10 @@ const Banner = () => {
           data-bs-target="#carouselExampleInterval"
           data-bs-slide="prev"
         >
-          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span
+            className="carousel-control-prev-icon"
+            aria-hidden="true"
+          ></span>
           <span className="visually-hidden">Previous</span>
         </button>
         <button
@@ -33,7 +51,10 @@ const Banner = () => {
           data-bs-target="#carouselExampleInterval"
           data-bs-slide="next"
         >
-          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span
+            className="carousel-control-next-icon"
+            aria-hidden="true"
+          ></span>
           <span className="visually-hidden">Next</span>
         </button>
       </div>

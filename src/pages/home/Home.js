@@ -33,10 +33,7 @@ const Home = () => {
       console.log("log");
       clearInterval(animation, 200);
     }, 200);
- 
   };
-
-
 
   const onTop = (e) => {
     document.body.scrollTop = 0;
@@ -48,9 +45,7 @@ const Home = () => {
       .get(`http://khanh.tokyo/api/products?page=${page}&limit=18&id=2`)
       .then(function (response) {
         setProduct(response.data.data.data);
-
-        console.log(response.data.data.data);
-      })  
+      })
       .catch(function (error) {
         // handle error
         console.log(error);
@@ -195,8 +190,8 @@ const Home = () => {
                   return (
                     <Link
                       to={`product/${product.id}/${product.slug}`}
+                      key={product.keyid}
                       className={`card ${styles.cardSize} shadow text-decoration-none text-black mt-3 rounded  mx-2`}
-                      key={i}
                     >
                       <img
                         src={product.avatar}

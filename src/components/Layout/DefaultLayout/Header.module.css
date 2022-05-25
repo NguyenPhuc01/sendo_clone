@@ -4,6 +4,9 @@
 .help {
   height: 32px;
 }
+.inputSz {
+  width: 92%;
+}
 .fz {
   font-weight: 700;
   font-size: 12px;
@@ -23,14 +26,6 @@
   justify-content: space-between !important;
 }
 .modall {
-  /* position: fixed;
-  top: 60px;
-  z-index: 1055;
-  display: none;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  outline: 0; */
   left: auto !important ;
   top: 60px !important;
   width: 300px !important;

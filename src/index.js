@@ -13,20 +13,23 @@ import Registration from "./pages/Registration/Registration";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import DetailProduct from "./pages/Detail/DetailProduct";
-
-
+import Cart from "./pages/Cart/Cart";
+import { CartProvider } from "react-use-cart";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/Registration" element={<Registration />} />
-        <Route path="/product/:id/:slug" element={<DetailProduct />} />
-      </Routes>
-    </BrowserRouter>
-  </React.StrictMode>
+  <CartProvider>
+    <React.StrictMode>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Registration" element={<Registration />} />
+          <Route path="/Cart" element={<Cart />} />
+          <Route path="/product/:id/:slug" element={<DetailProduct />} />
+        </Routes>
+      </BrowserRouter>
+    </React.StrictMode>
+  </CartProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

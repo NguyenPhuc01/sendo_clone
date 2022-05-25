@@ -3,8 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import styles from "../DefaultLayout/Header.module.css";
 import { BsGrid, BsSearch, BsHandbag } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import { BsBoxArrowRight, BsPersonCircle } from "react-icons/bs";
-
+import { BsBoxArrowRight, BsPersonCircle, BsList } from "react-icons/bs";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -19,14 +18,13 @@ const Header = () => {
   };
   const hanDangNhap = () => {
     if (nameInfor) {
-      navigate("/");
+      // navigate("/");
 
-      console.log("log");
+      console.log(nameInfor);
     } else {
       window.location.reload(navigate("/login"));
     }
   };
-
   return (
     <div>
       <Container fluid className={`${styles.bgHelp} text-white`}>
@@ -52,7 +50,7 @@ const Header = () => {
       <Container fluid className={`${styles.bg} text-white`}>
         <Container>
           <Row className={`${styles.sizeLogo} d-flex align-items-center`}>
-            <Col lg="2" md="3" sm="3" xs="4" className="px-0">
+            <Col lg="2" md="3" sm="2" xs="4" className="px-0">
               <div className="d-flex justify-content-around">
                 <button
                   className={`${styles.bg} border-0`}
@@ -67,29 +65,68 @@ const Header = () => {
                 </div>
               </div>
             </Col>
-            <Col lg="8" md="6" sm="6" xs="7" className="ps-0">
+            <Col lg="8" md="6" sm="6" xs="7" className="ps-0 ">
               <div>
                 <form>
                   <div className="d-flex">
                     <input
                       type="search"
-                      className="form-control w-100 shadow-none"
+                      className={`${styles.inputSz} form-control shadow-none`}
                       id="exampleInputEmail1"
                       aria-describedby="emailHelp"
                       placeholder="Tìm kiếm trên Sendo..."
                     />
-                    <button type="submit" className="btn bg-body ms-2">
+                    <button
+                      type="submit"
+                      className="btn bg-body ms-2  d-none d-lg-block"
+                    >
                       <BsSearch className="fs-5 fw-bold" />
                     </button>
                   </div>
                 </form>
               </div>
             </Col>
-            <Col lg="2" md="3 " sm="3" xs="1">
-              <div className="d-flex justify-content-around ">
-                <div className="d-none d-xl-block ">
+            <Col lg="2" md="3 " sm="4" xs="1">
+              <div className="d-flex justify-content-around">
+                <button
+                  className={`${styles.bg} border-0  text-light`}
+                  onClick={() => {
+                    navigate("/Cart");
+                  }}
+                >
                   <BsHandbag className="fs-4" />
+                </button>
+
+                <div className="me-3 ofcanvat d-md-none d-sm-block ">
+                  <button
+                    className="border-0 px-1 "
+                    type="button"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasRight"
+                    aria-controls="offcanvasRight"
+                  >
+                    <BsList />
+                  </button>
+
+                  <div
+                    className="offcanvas offcanvas-end"
+                    tabindex="-1"
+                    id="offcanvasRight"
+                    aria-labelledby="offcanvasRightLabel"
+                  >
+                    <div className="offcanvas-header">
+                      <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+                      <button
+                        type="button"
+                        className="btn-close text-reset"
+                        data-bs-dismiss="offcanvas"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div className="offcanvas-body">...</div>
+                  </div>
                 </div>
+
                 <div className=" ">
                   <div className="d-none d-md-block ">
                     <button

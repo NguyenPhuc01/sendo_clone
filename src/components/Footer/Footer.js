@@ -30,7 +30,6 @@ const Footer = () => {
     },
   ]);
 
-  console.log(tutorial);
   return (
     <div>
       <Container fluid>
