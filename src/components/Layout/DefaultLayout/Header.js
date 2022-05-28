@@ -4,15 +4,19 @@ import styles from "../DefaultLayout/Header.module.css";
 import { BsGrid, BsSearch, BsHandbag } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { BsBoxArrowRight, BsPersonCircle, BsList } from "react-icons/bs";
+import { useCart } from "react-use-cart";
 
 const Header = () => {
   const navigate = useNavigate();
   const infor = localStorage.getItem("infor");
   const nameInfor = JSON.parse(infor);
 
+  const { totalItems } = useCart();
+
   const handLogOut = () => {
     localStorage.removeItem("infor");
 
+    navigate("/");
     window.location.reload();
     console.log("click");
   };
@@ -25,6 +29,23 @@ const Header = () => {
       window.location.reload(navigate("/login"));
     }
   };
+
+  const hanDangNhapOnMobile = () => {
+    if (nameInfor) {
+      console.log("ok");
+      navigate("/InforUser");
+    } else {
+      navigate("/Login");
+    }
+  };
+
+  // const iconMobileSucces = document.querySelector("#iconMobileSucces");
+  // if (nameInfor) {
+  //   iconMobileSucces.classList.add("d-block");
+  // } else {
+  //   iconMobileSucces.classList.add("d-none");
+  // }
+
   return (
     <div>
       <Container fluid className={`${styles.bgHelp} text-white`}>
@@ -65,13 +86,13 @@ const Header = () => {
                 </div>
               </div>
             </Col>
-            <Col lg="8" md="6" sm="6" xs="7" className="ps-0 ">
+            <Col lg="8" md="6" sm="6" xs="7" className="ps-0 px-0 ">
               <div>
                 <form>
-                  <div className="d-flex">
+                  <div className={`d-flex ${styles.inputSz}`}>
                     <input
                       type="search"
-                      className={`${styles.inputSz} form-control shadow-none`}
+                      className={` form-control w-100 shadow-none`}
                       id="exampleInputEmail1"
                       aria-describedby="emailHelp"
                       placeholder="Tìm kiếm trên Sendo..."
@@ -88,43 +109,39 @@ const Header = () => {
             </Col>
             <Col lg="2" md="3 " sm="4" xs="1">
               <div className="d-flex justify-content-around">
-                <button
-                  className={`${styles.bg} border-0  text-light`}
-                  onClick={() => {
-                    navigate("/Cart");
-                  }}
-                >
-                  <BsHandbag className="fs-4" />
-                </button>
-
-                <div className="me-3 ofcanvat d-md-none d-sm-block ">
+                <div className={` ${styles.cart}`}>
                   <button
-                    className="border-0 px-1 "
-                    type="button"
-                    data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasRight"
-                    aria-controls="offcanvasRight"
+                    className={`${styles.bg} border-0  text-light ps-0`}
+                    onClick={() => {
+                      navigate("/Cart");
+                    }}
                   >
-                    <BsList />
+                    <BsHandbag className="fs-4 fw-bold" />
                   </button>
-
-                  <div
-                    className="offcanvas offcanvas-end"
-                    tabindex="-1"
-                    id="offcanvasRight"
-                    aria-labelledby="offcanvasRightLabel"
+                  <span
+                    className={`${styles.numberCart} text-center d-none d-md-block`}
                   >
-                    <div className="offcanvas-header">
-                      <h5 id="offcanvasRightLabel">Offcanvas right</h5>
-                      <button
-                        type="button"
-                        className="btn-close text-reset"
-                        data-bs-dismiss="offcanvas"
-                        aria-label="Close"
-                      ></button>
-                    </div>
-                    <div className="offcanvas-body">...</div>
-                  </div>
+                    {totalItems}
+                  </span>
+                </div>
+
+                <div className="me-3  d-md-none d-sm-block ">
+                  <button
+                    className={`${styles.bg} border-0 px-1 text-light`}
+                    type="button"
+                    onClick={hanDangNhapOnMobile}
+                  >
+                    {nameInfor ? (
+                      <img
+                        src="https://media3.scdn.vn/img4/2021/06_07/t1tcJHL3RpeEswxPFNLU.jpg"
+                        alt=""
+                        id="iconMobileSucces"
+                        className={`${styles.iconOnSmartPhone} rounded-circle`}
+                      />
+                    ) : (
+                      <BsPersonCircle className="fs-5" />
+                    )}
+                  </button>
                 </div>
 
                 <div className=" ">
@@ -145,7 +162,6 @@ const Header = () => {
                     </button>
                   </div>
                 </div>
-
                 <div
                   className={`${styles.modall} modal`}
                   id="exampleModal"
@@ -170,6 +186,10 @@ const Header = () => {
                         <div>
                           <button
                             className={`bg-body border-0 ${styles.hoverButton} mb-2`}
+                            onClick={() => {
+                              navigate("/InforUser");
+                              window.location.reload();
+                            }}
                           >
                             Thông tin tài khoản
                           </button>

@@ -11,33 +11,37 @@ import {
   BsJournalBookmark,
   BsChevronRight,
   BsHeart,
-  BsFillArchiveFill,
+  BsFillTrashFill,
 } from "react-icons/bs";
 
 const Cart = () => {
-  const [count, setCount] = useState(1);
+  // const [count, setCount] = useState(1);
+  // const [price, setPrice] = useState(0);
+  const [check, setCheck] = useState(true);
   const {
-    items,
     isEmpty,
-    totalItems,
+
     totalUniqueItems,
+    items,
+    totalItems,
+    cartTotal,
     updateItemQuantity,
     removeItem,
     emptyCart,
   } = useCart();
 
-  if (isEmpty)
-    return (
-      <h1 className="text-center">
-        {" "}
-        Giỏ hàng trống. Quay lại trang chủ <Link to="/">tại đây</Link>
-      </h1>
-    );
+  // var addNumber = ".000đ";
+
+  console.log(items);
+  const total = items.map((e) => {});
 
   const handleOnChange = (e) => {
-    console.log();
-    if (e.target.checked) {
+    console.log(e.quantity);
+    if (check === true) {
+      console.log("ok");
+      setCheck(false);
     } else {
+      setCheck(true);
       console.log("no ok");
     }
   };
@@ -60,6 +64,18 @@ const Cart = () => {
           </Row>
           <Row>
             <Col md="8">
+              <div>
+                {isEmpty ? (
+                  <h4 className="text-center">
+                    {" "}
+                    Giỏ hàng trống. Quay lại trang chủ{" "}
+                    <Link to="/">tại đây</Link>
+                  </h4>
+                ) : (
+                  ""
+                )}
+              </div>
+
               <div>
                 {items.map((e, i) => {
                   return (
@@ -97,6 +113,7 @@ const Cart = () => {
                                   <input
                                     type="checkbox"
                                     className="me-3"
+                                    value={check}
                                     onChange={handleOnChange}
                                   />
                                   <img
@@ -147,7 +164,7 @@ const Cart = () => {
 
                         <div className="d-flex justify-content-between ">
                           <div className="mt-5 ms-2">
-                            <span>{e.price}</span>
+                            <h6 className="text-danger">{e.price}.000đ</h6>
                           </div>
 
                           <div className="d-flex flex-column align-items-center">
@@ -155,22 +172,21 @@ const Cart = () => {
                               <button
                                 className="border-0 ms-3 px-2 py-1 "
                                 onClick={() => {
-                                  if (count > 0) {
-                                    setCount(count - 1);
-                                  }
+                                  updateItemQuantity(e.id, e.quantity - 1);
                                 }}
                               >
                                 -
                               </button>
                               <input
                                 type="numeric"
-                                value={count}
+                                value={e.quantity}
                                 className={`${styles.count} ms-3 text-center`}
                               />
+                              {/* <span></span> */}
                               <button
                                 className="border-0 ms-3 px-2 py-1 mt-5"
                                 onClick={() => {
-                                  setCount(count + 1);
+                                  updateItemQuantity(e.id, e.quantity + 1);
                                 }}
                               >
                                 +
@@ -189,7 +205,7 @@ const Cart = () => {
                                 removeItem(e.id);
                               }}
                             >
-                              <BsFillArchiveFill />
+                              <BsFillTrashFill />
                             </button>
                           </div>
                         </div>
@@ -220,7 +236,7 @@ const Cart = () => {
                     <span>Tạm Tính:</span>
                   </div>
                   <div>
-                    <h5>đ</h5>
+                    <h5>{cartTotal.toLocaleString()}.000đ</h5>
                   </div>
                 </div>
 

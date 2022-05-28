@@ -4,9 +4,7 @@
 .help {
   height: 32px;
 }
-.inputSz {
-  width: 92%;
-}
+
 .fz {
   font-weight: 700;
   font-size: 12px;
@@ -29,4 +27,45 @@
   left: auto !important ;
   top: 60px !important;
   width: 300px !important;
+}
+.cart {
+  position: relative;
+}
+.numberCart {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  margin: auto;
+  left: 15px;
+  top: -2px;
+  z-index: 999;
+  background-color: #fff;
+  color: #d52220;
+  font-weight: bold;
+  border-radius: 100%;
+  font-size: 12px;
+}
+.iconOnSmartPhone {
+  width: 25px;
+  height: 25px;
+}
+@media only screen and (max-width: 739px) {
+  .inputSz {
+    width: 85%;
+  }
+}
+@media only screen and (min-width: 740px) and (max-width: 999px) {
+  .inputSz {
+    width: 85% !important;
+  }
+}
+@media only screen and (min-width: 1000px) and (max-width: 1199px) {
+  .inputSz {
+    width: 85% !important;
+  }
+}
+@media only screen and (min-width: 1199px) and (max-width: 1399px) {
+  .inputSz {
+    width: 85% !important;
+  }
 }

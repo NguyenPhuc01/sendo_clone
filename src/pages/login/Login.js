@@ -29,7 +29,7 @@ const Login = () => {
         data,
       });
       localStorage.setItem("infor", JSON.stringify(result.data.data));
-      // console.log("day la result", result.data.data.name);
+      console.log("day la result", result.data.data);
 
       setLoading(false);
       navigate("/");

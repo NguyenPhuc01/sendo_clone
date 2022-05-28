@@ -15,6 +15,7 @@ import "slick-carousel/slick/slick-theme.css";
 import DetailProduct from "./pages/Detail/DetailProduct";
 import Cart from "./pages/Cart/Cart";
 import { CartProvider } from "react-use-cart";
+import InforUser from "./pages/InforUser/InforUser";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <CartProvider>
@@ -25,6 +26,7 @@ root.render(
           <Route path="/Login" element={<Login />} />
           <Route path="/Registration" element={<Registration />} />
           <Route path="/Cart" element={<Cart />} />
+          <Route path="/InforUser" element={<InforUser />} />
           <Route path="/product/:id/:slug" element={<DetailProduct />} />
         </Routes>
       </BrowserRouter>

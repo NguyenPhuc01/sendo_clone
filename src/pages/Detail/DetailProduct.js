@@ -7,6 +7,8 @@ import { useParams } from "react-router-dom";
 import { BsExclamationCircle } from "react-icons/bs";
 import Footer from "../../components/Footer/Footer";
 import { useCart } from "react-use-cart";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const axios = require("axios").default;
 
 const DetailProduct = () => {
@@ -28,7 +30,7 @@ const DetailProduct = () => {
 
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
-  }, []);
+  }, [id]);
 
   const addItemDetai = () => {
     const data = {
@@ -40,6 +42,8 @@ const DetailProduct = () => {
       cate_id: product.cate_id,
     };
     addItem(data, parseInt(1));
+
+    toast("Đã thêm sản phẩm vào giỏ hàng!");
   };
 
   console.log(product);
@@ -47,6 +51,7 @@ const DetailProduct = () => {
     <div>
       <Header />
       <Container className="bg-body  shadow my-3">
+        <ToastContainer />
         <Row>
           <Col lg="5">
             <div>
@@ -71,7 +76,7 @@ const DetailProduct = () => {
               <div className="mt-2">
                 <span>Thương hiệu: </span>
                 <span className="text-primary ">{product.brandname}</span>
-                <h3 className="text-danger mt-2 mb-5">{product.price}</h3>
+                <h3 className="text-danger mt-2 mb-5">{product.price}.000đ</h3>
                 <div className="d-flex align-items-center">
                   <BsHandbag />
                   <span className="text-secondary ms-2">2 lượt mua </span>

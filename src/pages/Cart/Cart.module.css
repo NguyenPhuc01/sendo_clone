@@ -19,7 +19,7 @@
   display: none;
 }
 .count {
-  width: 30px;
+  width: 40px;
   height: 30px;
 }
 @media only screen and (max-width: 739px) {

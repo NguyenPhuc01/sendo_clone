@@ -22,8 +22,13 @@ const Home = () => {
         onTop.classList.add("d-none");
       }
     };
+
     window.addEventListener("scroll", handleScrol);
+    return () => {
+      clearInterval(handleScrol);
+    };
   }, []);
+
   const handleNextPage = (i) => {
     setPage(i + 1);
 
@@ -42,7 +47,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get(`http://khanh.tokyo/api/products?page=${page}&limit=18&id=2`)
+      .get(`http://khanh.tokyo/api/products?page=${page}&limit=18&id=7`)
       .then(function (response) {
         setProduct(response.data.data.data);
       })
@@ -204,7 +209,7 @@ const Home = () => {
                         >
                           {product.name}
                         </p>
-                        <h6 className="card-title">{product.price}</h6>
+                        <h6 className="card-title">{product.price.toLocaleString()}.000đ</h6>
                       </div>
                       <div className="d-flex justify-content-between p-1">
                         <span>TP.HCM</span>
