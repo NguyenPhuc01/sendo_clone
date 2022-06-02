@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import styles from "../DefaultLayout/Header.module.css";
 import { BsGrid, BsSearch, BsHandbag } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import { BsBoxArrowRight, BsPersonCircle, BsList } from "react-icons/bs";
+import { BsBoxArrowRight, BsPersonCircle, } from "react-icons/bs";
 import { useCart } from "react-use-cart";
 
 const Header = () => {
@@ -39,12 +39,6 @@ const Header = () => {
     }
   };
 
-  // const iconMobileSucces = document.querySelector("#iconMobileSucces");
-  // if (nameInfor) {
-  //   iconMobileSucces.classList.add("d-block");
-  // } else {
-  //   iconMobileSucces.classList.add("d-none");
-  // }
 
   return (
     <div>
@@ -119,7 +113,7 @@ const Header = () => {
                     <BsHandbag className="fs-4 fw-bold" />
                   </button>
                   <span
-                    className={`${styles.numberCart} text-center d-none d-md-block`}
+                    className={`${styles.numberCart} text-center `}
                   >
                     {totalItems}
                   </span>

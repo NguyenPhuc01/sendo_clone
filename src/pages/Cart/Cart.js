@@ -4,7 +4,7 @@ import Header from "../../components/Layout/DefaultLayout/Header";
 import styles from "../Cart/Cart.module.css";
 import { useCart } from "react-use-cart";
 import "../../App.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   BsChatDots,
@@ -15,25 +15,24 @@ import {
 } from "react-icons/bs";
 
 const Cart = () => {
+  const navigate = useNavigate();
   // const [count, setCount] = useState(1);
   // const [price, setPrice] = useState(0);
   const [check, setCheck] = useState(true);
   const {
     isEmpty,
 
-    totalUniqueItems,
     items,
     totalItems,
     cartTotal,
     updateItemQuantity,
     removeItem,
-    emptyCart,
   } = useCart();
-
+  const infor = localStorage.getItem("infor");
+  const nameInfor = JSON.parse(infor);
   // var addNumber = ".000đ";
 
-  console.log(items);
-  const total = items.map((e) => {});
+  // console.log(items);
 
   const handleOnChange = (e) => {
     console.log(e.quantity);
@@ -215,7 +214,7 @@ const Cart = () => {
                 })}
               </div>
             </Col>
-            <Col md="4" className="">
+            <Col md="4" className="px-0 px-md-2">
               <div className="shadow bg-body">
                 <div className="d-flex justify-content-between px-2">
                   <div>
@@ -236,12 +235,19 @@ const Cart = () => {
                     <span>Tạm Tính:</span>
                   </div>
                   <div>
-                    <h5>{cartTotal.toLocaleString()}.000đ</h5>
+                    <h5>
+                      { cartTotal.toLocaleString()}.000đ
+                    </h5>
                   </div>
                 </div>
 
                 <div className="px-2 mt-2 pb-3">
-                  <button className="border-0 text-center text-light w-100 bg-danger fw-bold py-2 rounded-3">
+                  <button
+                    className="border-0 text-center text-light w-100 bg-danger fw-bold py-2 rounded-3"
+                    onClick={() => {
+                      nameInfor ? navigate("/checkOut") : navigate("/Login");
+                    }}
+                  >
                     Mua Ngay
                   </button>
                 </div>

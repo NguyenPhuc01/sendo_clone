@@ -116,14 +116,7 @@ const Registration = () => {
                   Đăng Ký
                 </button>
               </div>
-              {/* <Link
-                to=""
-                type="submit"
-                className="text-white text-decoration-none btn btn-primary mt-4 w-100"
-                onClick={handlRegister}
-              >
-                Đăng Ký
-              </Link> */}
+      
             </form>
           </div>
         </Col>

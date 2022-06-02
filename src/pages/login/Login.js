@@ -123,7 +123,7 @@ const Login = () => {
                     <button type="submit" className="btn btn-primary  ">
                       Đăng Nhập
                     </button>
-                    <ToastContainer />;
+                    <ToastContainer />
                     <Link
                       to="/Registration"
                       className="text-white text-decoration-none "

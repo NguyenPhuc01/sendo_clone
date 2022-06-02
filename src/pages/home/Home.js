@@ -26,6 +26,7 @@ const Home = () => {
     window.addEventListener("scroll", handleScrol);
     return () => {
       clearInterval(handleScrol);
+      clearInterval(onTop);
     };
   }, []);
 
@@ -47,7 +48,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get(`http://khanh.tokyo/api/products?page=${page}&limit=18&id=7`)
+      .get(`http://khanh.tokyo/api/products?page=${page}&limit=18&id=2`)
       .then(function (response) {
         setProduct(response.data.data.data);
       })
@@ -195,7 +196,7 @@ const Home = () => {
                   return (
                     <Link
                       to={`product/${product.id}/${product.slug}`}
-                      key={product.keyid}
+                      key={i}
                       className={`card ${styles.cardSize} shadow text-decoration-none text-black mt-3 rounded  mx-2`}
                     >
                       <img
@@ -209,7 +210,9 @@ const Home = () => {
                         >
                           {product.name}
                         </p>
-                        <h6 className="card-title">{product.price.toLocaleString()}.000đ</h6>
+                        <h6 className="card-title">
+                          {product.price.toLocaleString()}.000đ
+                        </h6>
                       </div>
                       <div className="d-flex justify-content-between p-1">
                         <span>TP.HCM</span>

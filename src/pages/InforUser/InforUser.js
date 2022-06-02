@@ -8,6 +8,11 @@ import {
   BsShieldLock,
   BsHeart,
   BsArrowClockwise,
+  BsPencilSquare,
+  BsShopWindow,
+  BsCashStack,
+  BsChatSquareDots,
+  BsDiagram2,
 } from "react-icons/bs";
 const InforUser = () => {
   const infor = localStorage.getItem("infor");
@@ -18,7 +23,7 @@ const InforUser = () => {
       <Header />
       <Container>
         <Row className="mt-4">
-          <Col md="3">
+          <Col md="4" lg='3'>
             <div className="d-flex">
               <div>
                 <img
@@ -37,52 +42,69 @@ const InforUser = () => {
               </div>
             </div>
 
-            <h6 className={`${styles.manage} mt-3 py-1 ps-2 fw-bold`}>
+            <h6 className={`${styles.manage} ${styles.colorManage} mt-3 py-1 ps-2 fw-bold`}>
               Quản lý giao dịch
             </h6>
 
             <div>
               <ul className="list-unstyled">
                 <li className="mt-2">
-                  <BsJournalText />
+                  <BsJournalText className="me-2" />
                   Đơn hàng
                 </li>
                 <li className="mt-2">
-                  <BsArrowClockwise />
+                  <BsArrowClockwise className="me-2" />
                   Đơn hàng dịch vụ tiện ích
                 </li>
                 <li className="mt-2">
-                  <BsShieldLock />
+                  <BsShieldLock className="me-2" />
                   Tài khoản Senpay
                 </li>
                 <li className="mt-2">
-                  <BsGeoAlt />
+                  <BsGeoAlt className="me-2" />
                   Địa chỉ nhận hàngn
                 </li>
                 <li className="my-2">
-                  <BsHeart />
+                  <BsHeart className="me-2" />
                   Sản phẩm yêu thích
                 </li>
               </ul>
             </div>
-            <h6 className={`${styles.manage} mt-3 py-1 ps-2 fw-bold `}>
-              Quản lý giao dịch
+            <h6 className={`${styles.manage} ${styles.colorManage} mt-3 py-1 ps-2 fw-bold `}>
+              Quản lý tài khoản
             </h6>
 
             <div>
               <ul className="list-unstyled">
                 <li className="mt-2">
-                  <BsJournalText />
-                  Đơn hàng
+                  <BsPencilSquare className="me-2" />
+                  Thông tin tài khoản
                 </li>
-                <li className="mt-2">Đơn hàng dịch vụ tiện ích</li>
-                <li className="mt-2">Tài khoản Senpay</li>
-                <li className="mt-2">Địa chỉ nhận hàngn</li>
-                <li className="mt-2">Sản phẩm yêu thích</li>
+                <li className="mt-2">
+                  {" "}
+                  <BsShopWindow className="me-2" />
+                  Shop yêu thích
+                </li>
+                <li className="mt-2">
+                  <BsCashStack className="me-2" /> Ưu đãi của tôi
+                </li>
+                <li className="mt-2">
+                  <BsChatSquareDots className="me-2" />
+                  Hỏi đáp
+                </li>
+                <li className="mt-2">
+                  <BsDiagram2 className="me-2" />
+                  Liên kết mạng xã hội
+                </li>
               </ul>
             </div>
           </Col>
-          <Col md="9">2</Col>
+          <Col md="8" lg='9'>
+            <div>
+              <h6>Thông tin tài khoản</h6>
+            </div>
+            <div className="shadow bg-body">1</div>
+          </Col>
         </Row>
       </Container>
     </div>

@@ -39,7 +39,7 @@ const Footer = () => {
               <div className={`${styles.super}`}>
                 {tutorial.map((e) => {
                   return (
-                    <div className={`${styles.szBox}`} key={e}>
+                    <div className={`${styles.szBox}`} key={e.id}>
                       <div className="d-flex justify-content-center">
                         <img src={e.img} alt="" className={`${styles.szImg}`} />
                       </div>
@@ -162,8 +162,8 @@ const Footer = () => {
 
       <Container fluid className="bg-black text-light ">
         <Container className="px-0">
-          <Row>
-            <Col className="ps-0 col-5">
+          <Row className="">
+            <Col className="ps-0 col-5 d-none d-md-block">
               <div className="d-flex justify-content-between">
                 <div className={`d-flex flex-column ${styles.widthCompany} `}>
                   <span className={`${styles.fz}  mt-1`}>
@@ -204,7 +204,7 @@ const Footer = () => {
                 </div>
               </div>
             </Col>
-            <Col className="col-7 pe-0 d-flex flex-column align-items-center">
+            <Col className="col-7 pe-0 d-flex flex-column align-items-center d-none d-md-block">
               <div className={`${styles.widthRegistration}`}>
                 <span className={`${styles.fz}  mt-1`}>
                   Đăng ký nhận bản tin ưu đãi khủng từ Sendo
