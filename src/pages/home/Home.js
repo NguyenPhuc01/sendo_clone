@@ -16,6 +16,7 @@ const Home = () => {
   useEffect(() => {
     const handleScrol = (e) => {
       const onTop = document.getElementById("onTheTop");
+
       if (window.scrollY > 100) {
         onTop.classList.remove("d-none");
       } else {
@@ -25,13 +26,12 @@ const Home = () => {
 
     window.addEventListener("scroll", handleScrol);
     return () => {
-      clearInterval(handleScrol);
-      clearInterval(onTop);
+      window.removeEventListener("scroll", handleScrol);
+   
     };
   }, []);
 
   const handleNextPage = (i) => {
-    setPage(i + 1);
 
     const animation = setInterval(() => {
       document.body.scrollTop = 100;
@@ -39,6 +39,8 @@ const Home = () => {
       console.log("log");
       clearInterval(animation, 200);
     }, 200);
+    setPage(i + 1);
+
   };
 
   const onTop = (e) => {

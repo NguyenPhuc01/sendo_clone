@@ -4,15 +4,21 @@ import Header from "../../components/Layout/DefaultLayout/Header";
 import { useForm } from "react-hook-form";
 import { useCart } from "react-use-cart";
 import axios from "axios";
+// import serviceCallApi from "../../Service/Service";
+// import { useNavigate } from "react-router-dom";
+import { nameInfor } from "../../utils";
 
+const accessToken = nameInfor.token;
+const url = `http://khanh.tokyo/api/order`;
+const config = {
+  headers: { Authorization: `Bearer ${accessToken}` },
+};
 const CheckOut = () => {
+  // const navigate = useNavigate();
   const { items } = useCart();
-  const infor = localStorage.getItem("infor");
-  const nameInfor = JSON.parse(infor);
   const {
     register,
     handleSubmit,
-
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -22,9 +28,6 @@ const CheckOut = () => {
       Email: nameInfor.email,
     },
   });
-
-  console.log(nameInfor);
-
   const onSubmit = async (data) => {
     const orderProduct = {
       user_id: nameInfor.id,
@@ -33,42 +36,17 @@ const CheckOut = () => {
       address: data.address,
       item: items,
     };
-    console.log(
-      "🚀 ~ file: CheckOut.js ~ line 43 ~ onSubmit ~ orderProduct",
-      orderProduct
-    );
     try {
-      const order=axios.post(
-        "http://khanh.tokyo/api/order",
-        {
-          orderProduct,
-        },
-        {
-          headers: {
-            Authorization: `Basic ${nameInfor.token}`,
-          },
-        }
-      );
-      console.log(order);
+      axios
+        .post(url, orderProduct, config)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
     } catch (error) {
-      console.log(error);
+      console.log("loi");
     }
   };
 
-  useEffect(() => {
-    // axios
-    //   .POST("http://khanh.tokyo/api/order", {
-    //     headers: {
-    //       Authorization: `token ${nameInfor.token}`,
-    //     },
-    //   })
-    //   .then((res) => {
-    //     console.log(res.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
-  }, []);
+  useEffect(() => {}, []);
   return (
     <div>
       <Header />

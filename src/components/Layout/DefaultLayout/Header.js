@@ -221,7 +221,7 @@ const Header = () => {
                         </button>
                         <button
                           type="button"
-                          class="btn btn-secondary"
+                          className="btn btn-secondary"
                           data-bs-dismiss="modal"
                         >
                           Close

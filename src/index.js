@@ -17,6 +17,7 @@ import Cart from "./pages/Cart/Cart";
 import { CartProvider } from "react-use-cart";
 import InforUser from "./pages/InforUser/InforUser";
 import CheckOut from "./pages/CheckOut/CheckOut";
+import Thank from "./pages/Thank/Thank";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <CartProvider>
@@ -29,6 +30,7 @@ root.render(
           <Route path="/Cart" element={<Cart />} />
           <Route path="/InforUser" element={<InforUser />} />
           <Route path="/CheckOut" element={<CheckOut />} />
+          <Route path="/Thank" element={<Thank />} />
           <Route path="/product/:id/:slug" element={<DetailProduct />} />
         </Routes>
       </BrowserRouter>

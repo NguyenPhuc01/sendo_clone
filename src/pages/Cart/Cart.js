@@ -16,12 +16,10 @@ import {
 
 const Cart = () => {
   const navigate = useNavigate();
-  // const [count, setCount] = useState(1);
-  // const [price, setPrice] = useState(0);
+
   const [check, setCheck] = useState(true);
   const {
     isEmpty,
-
     items,
     totalItems,
     cartTotal,
@@ -30,9 +28,6 @@ const Cart = () => {
   } = useCart();
   const infor = localStorage.getItem("infor");
   const nameInfor = JSON.parse(infor);
-  // var addNumber = ".000đ";
-
-  // console.log(items);
 
   const handleOnChange = (e) => {
     console.log(e.quantity);
