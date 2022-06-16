@@ -7,8 +7,9 @@ import axios from "axios";
 // import serviceCallApi from "../../Service/Service";
 // import { useNavigate } from "react-router-dom";
 import { nameInfor } from "../../utils";
+// console.log(nameInfor.token);
 
-const accessToken = nameInfor.token;
+const accessToken = nameInfor?.token;
 const url = `http://khanh.tokyo/api/order`;
 const config = {
   headers: { Authorization: `Bearer ${accessToken}` },
@@ -16,6 +17,7 @@ const config = {
 const CheckOut = () => {
   // const navigate = useNavigate();
   const { items } = useCart();
+
   const {
     register,
     handleSubmit,
@@ -29,17 +31,25 @@ const CheckOut = () => {
     },
   });
   const onSubmit = async (data) => {
+    console.log({ items });
+    let newItems = items.map((e) => {
+      return {
+        ...e,
+        product_id: e.id,
+      };
+    });
     const orderProduct = {
       user_id: nameInfor.id,
-      full_Name: data.fullName,
+      full_name: data.fullName,
       phone: data.phone,
       address: data.address,
-      item: items,
+      item: newItems,
     };
     try {
+      console.log({ config });
       axios
         .post(url, orderProduct, config)
-        .then((res) => console.log(res))
+        .then((res) => console.log({ res }))
         .catch((err) => console.log(err));
     } catch (error) {
       console.log("loi");
@@ -67,16 +77,22 @@ const CheckOut = () => {
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="d-flex flex-column">
                   <label htmlFor="">Họ và Tên </label>
-                  <input {...register("fullName", { maxLength: 20 })} />
+                  <input
+                    {...register("fullName", { maxLength: 20 })}
+                    onChange={(e) => {}}
+                  />
                 </div>
                 <div className="d-flex flex-column mt-2">
                   <label htmlFor="">Email </label>
-                  <input {...register("Email")} />
+                  <input {...register("Email")} onChange={(e) => {}} />
                 </div>
                 <div className="d-flex flex-column mt-2">
                   <label htmlFor="">Số Điện Thoại </label>
 
-                  <input {...register("phone", { required: true })} />
+                  <input
+                    {...register("phone", { required: true })}
+                    onChange={(e) => {}}
+                  />
                   {errors.phone && (
                     <p className="mb-0 text-danger">
                       Trường này không được bỏ trống
@@ -86,23 +102,17 @@ const CheckOut = () => {
                 <div className="d-flex flex-column mt-2">
                   <label htmlFor="">Địa chỉ </label>
 
-                  <input {...register("address", { required: true })} />
+                  <input
+                    {...register("address", { required: true })}
+                    onChange={(e) => {}}
+                  />
                   {errors.address && (
                     <p className="mb-0 text-danger">
                       Trường này không được bỏ trống
                     </p>
                   )}
                 </div>
-                {/* <input
-                  type="number"
-                  {...register("age", { min: 18, max: 99 })}
-                />
-               
-                <select {...register("gender")}>
-                  <option value="female">female</option>
-                  <option value="male">male</option>
-                  <option value="other">other</option>
-                </select> */}
+
                 <div className="d-flex justify-content-end mt-3">
                   <input type="submit" />
                 </div>

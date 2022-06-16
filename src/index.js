@@ -18,24 +18,28 @@ import { CartProvider } from "react-use-cart";
 import InforUser from "./pages/InforUser/InforUser";
 import CheckOut from "./pages/CheckOut/CheckOut";
 import Thank from "./pages/Thank/Thank";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <CartProvider>
-    <React.StrictMode>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Login" element={<Login />} />
-          <Route path="/Registration" element={<Registration />} />
-          <Route path="/Cart" element={<Cart />} />
-          <Route path="/InforUser" element={<InforUser />} />
-          <Route path="/CheckOut" element={<CheckOut />} />
-          <Route path="/Thank" element={<Thank />} />
-          <Route path="/product/:id/:slug" element={<DetailProduct />} />
-        </Routes>
-      </BrowserRouter>
-    </React.StrictMode>
-  </CartProvider>
+  <Provider store={store}>
+    <CartProvider>
+      <React.StrictMode>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/Login" element={<Login />} />
+            <Route path="/Registration" element={<Registration />} />
+            <Route path="/Cart" element={<Cart />} />
+            <Route path="/InforUser" element={<InforUser />} />
+            <Route path="/CheckOut" element={<CheckOut />} />
+            <Route path="/Thank" element={<Thank />} />
+            <Route path="/product/:id/:slug" element={<DetailProduct />} />
+          </Routes>
+        </BrowserRouter>
+      </React.StrictMode>
+    </CartProvider>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
