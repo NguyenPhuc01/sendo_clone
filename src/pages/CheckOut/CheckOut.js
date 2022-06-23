@@ -3,20 +3,33 @@ import { Col, Container, Row } from "react-bootstrap";
 import Header from "../../components/Layout/DefaultLayout/Header";
 import { useForm } from "react-hook-form";
 import { useCart } from "react-use-cart";
-import axios from "axios";
+import { checkAuth } from "../../features/login/LoginFormSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  checkOut,
+  selectCheckOut,
+} from "../../features/checkOut/CheckOutSlice";
 // import serviceCallApi from "../../Service/Service";
 // import { useNavigate } from "react-router-dom";
-import { nameInfor } from "../../utils";
-// console.log(nameInfor.token);
 
-const accessToken = nameInfor?.token;
-const url = `http://khanh.tokyo/api/order`;
-const config = {
-  headers: { Authorization: `Bearer ${accessToken}` },
-};
+const infor = localStorage.getItem("userData");
+const nameInfor = JSON.parse(infor);
+// console.log("🚀 ~ file: CheckOut.js ~ line 14 ~ nameInfor", nameInfor);
+
+// const accessToken = nameInfor?.token;
+// const url = `http://khanh.tokyo/api/order`;
+// const config = {
+//   headers: { Authorization: `Bearer ${accessToken}` },
+// };
 const CheckOut = () => {
+  // const dispatch = useDispatch();
+  useEffect(() => {
+    checkAuth();
+  }, []);
   // const navigate = useNavigate();
   const { items } = useCart();
+  const { user } = useSelector(selectCheckOut);
+  // console.log("🚀 ~ file: CheckOut.js ~ line 30 ~ CheckOut ~ user", user);
 
   const {
     register,
@@ -24,12 +37,16 @@ const CheckOut = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      fullName: nameInfor.name,
+      fullName: user?.name || nameInfor?.name,
       sdt: "",
       location: "",
-      Email: nameInfor.email,
+      Email: user?.email || nameInfor?.email,
     },
   });
+  const dispatch = useDispatch();
+  useEffect(() => {
+    checkOut();
+  }, []);
   const onSubmit = async (data) => {
     console.log({ items });
     let newItems = items.map((e) => {
@@ -46,17 +63,17 @@ const CheckOut = () => {
       item: newItems,
     };
     try {
-      console.log({ config });
-      axios
-        .post(url, orderProduct, config)
-        .then((res) => console.log({ res }))
-        .catch((err) => console.log(err));
+      await dispatch(checkOut(orderProduct));
+      // console.log({ config });
+      // axios
+      //   .post(url, orderProduct, config)
+      //   .then((res) => console.log({ res }))
+      //   .catch((err) => console.log(err));
     } catch (error) {
       console.log("loi");
     }
   };
 
-  useEffect(() => {}, []);
   return (
     <div>
       <Header />

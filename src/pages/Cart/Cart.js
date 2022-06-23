@@ -26,7 +26,7 @@ const Cart = () => {
     updateItemQuantity,
     removeItem,
   } = useCart();
-  const infor = localStorage.getItem("infor");
+  const infor = localStorage.getItem("userData");
   const nameInfor = JSON.parse(infor);
 
   const handleOnChange = (e) => {
@@ -175,6 +175,7 @@ const Cart = () => {
                                 type="numeric"
                                 value={e.quantity}
                                 className={`${styles.count} ms-3 text-center`}
+                                onChange={() => {}}
                               />
                               {/* <span></span> */}
                               <button
@@ -230,9 +231,7 @@ const Cart = () => {
                     <span>Tạm Tính:</span>
                   </div>
                   <div>
-                    <h5>
-                      { cartTotal.toLocaleString()}.000đ
-                    </h5>
+                    <h5>{cartTotal.toLocaleString()}.000đ</h5>
                   </div>
                 </div>
 

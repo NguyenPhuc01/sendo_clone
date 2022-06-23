@@ -1,30 +1,44 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import styles from "../DefaultLayout/Header.module.css";
 import { BsGrid, BsSearch, BsHandbag } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import { BsBoxArrowRight, BsPersonCircle, } from "react-icons/bs";
+import { BsBoxArrowRight, BsPersonCircle } from "react-icons/bs";
 import { useCart } from "react-use-cart";
-
+import { logout } from "../../../features/login/LoginFormSlice";
+import { useDispatch } from "react-redux";
 const Header = () => {
-  const navigate = useNavigate();
-  const infor = localStorage.getItem("infor");
+  const infor = localStorage.getItem("userData");
   const nameInfor = JSON.parse(infor);
+  // console.log("🚀 ~ file: Header.js ~ line 12 ~ Header ~ nameInfor", nameInfor);
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(checkAuth());
+  // }, [dispatch]);
   const { totalItems } = useCart();
 
-  const handLogOut = () => {
-    localStorage.removeItem("infor");
+  const handLogOut = async () => {
+    try {
+      await dispatch(logout());
+      localStorage.removeItem("react-use-cart");
 
-    navigate("/");
-    window.location.reload();
-    console.log("click");
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+    // localStorage.removeItem("userData");
+    // localStorage.removeItem("react-use-cart");
+
+    // navigate("/");
+    // window.location.reload();
+    // console.log("click");
   };
   const hanDangNhap = () => {
     if (nameInfor) {
       // navigate("/");
-
-      console.log(nameInfor);
+      // window.location.reload();
     } else {
       window.location.reload(navigate("/login"));
     }
@@ -38,7 +52,6 @@ const Header = () => {
       navigate("/Login");
     }
   };
-
 
   return (
     <div>
@@ -112,9 +125,7 @@ const Header = () => {
                   >
                     <BsHandbag className="fs-4 fw-bold" />
                   </button>
-                  <span
-                    className={`${styles.numberCart} text-center `}
-                  >
+                  <span className={`${styles.numberCart} text-center `}>
                     {totalItems}
                   </span>
                 </div>

@@ -3,35 +3,56 @@ import { Col, Container, Row } from "react-bootstrap";
 import Header from "../../components/Layout/DefaultLayout/Header";
 import styles from "../Detail/DetailProduct.module.css";
 import { BsHandbag } from "react-icons/bs";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { BsExclamationCircle } from "react-icons/bs";
 import Footer from "../../components/Footer/Footer";
 import { useCart } from "react-use-cart";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const axios = require("axios").default;
+import { useDispatch } from "react-redux";
+
+// import { selectProduct } from "../../features/product/ProductSlice";
+import serviceCallApi from "../../Service/serviceApi";
+import { checkAuth } from "../../features/login/LoginFormSlice";
+// const axios = require("axios").default;
 
 const DetailProduct = () => {
+  const navigate = useNavigate();
   const { addItem } = useCart();
   const { id } = useParams();
   const [count, setCount] = useState(1);
   const [product, setProduct] = useState([]);
-
+  const infor = localStorage.getItem("userData");
+  const nameInfor = JSON.parse(infor);
+  // const { data } = useSelector(selectProduct);
   useEffect(() => {
-    axios
-      .get(`http://khanh.tokyo/api/products/${id}`)
-      .then(function (response) {
-        setProduct(response.data.data);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      });
+    getProductList();
+    // axios
+    //   .get(`http://khanh.tokyo/api/products/${id}`)
+    //   .then(function (response) {
+    //     setProduct(response.data.data);
+    //   })
+    //   .catch(function (error) {
+    //     // handle error
+    //     console.log(error);
+    //   });
 
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
-  }, [id]);
+  }, []);
+  const getProductList = async () => {
+    try {
+      const response = await serviceCallApi(`products/${id}`, "GET");
 
+      setProduct(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // const gotoCart = (data) => {
+  //   addItem(data, parseInt(1));
+  //   navigate("/cart");
+  // };
   const addItemDetai = () => {
     const data = {
       id: product.id,
@@ -41,12 +62,24 @@ const DetailProduct = () => {
       detail: product.detail,
       cate_id: product.cate_id,
     };
-    addItem(data, parseInt(1));
+    addItem(data, parseInt(count));
 
     toast("Đã thêm sản phẩm vào giỏ hàng!");
   };
+  const dispatch = useDispatch();
 
-  console.log(product);
+  const hanleBuyProduct = async () => {
+    try {
+      if (nameInfor) {
+        await dispatch(checkAuth(nameInfor));
+        addItemDetai();
+        navigate("/checkOut");
+      } else {
+        navigate("/login");
+      }
+    } catch (error) {}
+  };
+
   return (
     <div>
       <Header />
@@ -103,6 +136,7 @@ const DetailProduct = () => {
                     type="numeric"
                     value={count}
                     className={`${styles.count} ms-3 text-center`}
+                    onChange={() => {}}
                   />
                   <button
                     className="border-0 ms-3 px-3 py-1"
@@ -123,7 +157,10 @@ const DetailProduct = () => {
               >
                 Thêm vào giỏ
               </button>
-              <button className="border-0 bg-danger rounded-3 text-light fw-bold px-3 px-md-5 py-2 text-center me-2  ">
+              <button
+                className="border-0 bg-danger rounded-3 text-light fw-bold px-3 px-md-5 py-2 text-center me-2  "
+                onClick={hanleBuyProduct}
+              >
                 Mua ngay
               </button>
             </div>
