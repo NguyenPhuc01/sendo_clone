@@ -210,7 +210,13 @@ const Header = () => {
                           </button>
                         </div>
                         <div>
-                          <button className={`bg-body border-0  mb-2`}>
+                          <button
+                            className={`bg-body border-0  mb-2`}
+                            onClick={() => {
+                              navigate("/Order");
+                              window.location.reload();
+                            }}
+                          >
                             Theo dõi đơn hàng
                           </button>
                         </div>

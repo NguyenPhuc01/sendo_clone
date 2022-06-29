@@ -9,6 +9,7 @@ import {
   checkOut,
   selectCheckOut,
 } from "../../features/checkOut/CheckOutSlice";
+import { useNavigate } from "react-router-dom";
 // import serviceCallApi from "../../Service/Service";
 // import { useNavigate } from "react-router-dom";
 
@@ -26,7 +27,8 @@ const CheckOut = () => {
   useEffect(() => {
     checkAuth();
   }, []);
-  // const navigate = useNavigate();
+
+  const navigate = useNavigate();
   const { items } = useCart();
   const { user } = useSelector(selectCheckOut);
   // console.log("🚀 ~ file: CheckOut.js ~ line 30 ~ CheckOut ~ user", user);
@@ -44,6 +46,7 @@ const CheckOut = () => {
     },
   });
   const dispatch = useDispatch();
+
   useEffect(() => {
     checkOut();
   }, []);
@@ -55,6 +58,10 @@ const CheckOut = () => {
         product_id: e.id,
       };
     });
+    console.log(
+      "🚀 ~ file: CheckOut.js ~ line 62 ~ newItems ~ newItems",
+      newItems
+    );
     const orderProduct = {
       user_id: nameInfor.id,
       full_name: data.fullName,
@@ -62,8 +69,13 @@ const CheckOut = () => {
       address: data.address,
       item: newItems,
     };
+    console.log(
+      "🚀 ~ file: CheckOut.js ~ line 70 ~ onSubmit ~ orderProduct",
+      orderProduct
+    );
     try {
       await dispatch(checkOut(orderProduct));
+      navigate("/order");
       // console.log({ config });
       // axios
       //   .post(url, orderProduct, config)

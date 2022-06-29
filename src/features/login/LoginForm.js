@@ -3,11 +3,11 @@ import styles from "../../pages/Login/Login.module.css";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 // import Example from "../../components/Loading/Loading";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useDispatch, useSelector } from "react-redux";
-import { login, selectSignin, postApi, toggleLoading } from "./LoginFormSlice";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { login } from "./LoginFormSlice";
+// import axios from "axios";
 // import { login, } from "./LoginFormSlice";
 
 const LoginForm = () => {
@@ -17,7 +17,7 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm();
   const dispatch = useDispatch();
-  const { loading, loggedIn, error, token } = useSelector(selectSignin);
+  // const { loading, loggedIn, error, token } = useSelector(selectSignin);
   // console.log("🚀 ~ file: LoginForm.js ~ line 21 ~ LoginForm ~ token", token);
 
   const navigate = useNavigate();

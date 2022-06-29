@@ -1,0 +1,10 @@
+.nav {
+  flex-wrap: nowrap;
+}
+.active {
+  color: red !important;
+}
+.iconShop {
+    width: 48px;
+    height: 24px;
+  }

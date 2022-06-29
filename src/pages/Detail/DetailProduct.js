@@ -40,6 +40,7 @@ const DetailProduct = () => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   }, []);
+
   const getProductList = async () => {
     try {
       const response = await serviceCallApi(`products/${id}`, "GET");

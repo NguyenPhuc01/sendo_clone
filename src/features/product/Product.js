@@ -2,19 +2,19 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import styles from "../../pages/Home/Home.module.css";
 import Header from "../../components/Layout/DefaultLayout/Header";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { BsArrowUpSquare } from "react-icons/bs";
 import Banner from "../../components/Banner/Banner.js";
 import "../../App.css";
 import { useDispatch, useSelector } from "react-redux";
 import Footer from "../../components/Footer/Footer";
 import { getListProduct, selectProduct } from "./ProductSlice";
-const axios = require("axios").default;
+import ProductLayout from "../../components/Layout/productLayout/ProductLayout";
+// const axios = require("axios").default;
 const pages = [1, 2, 3];
-const Product = () => {
+const Product = (props) => {
   const dispatch = useDispatch();
 
-  const [product, setProduct] = useState([]);
   const [page, setPage] = useState(1);
   useEffect(() => {
     const handleScrol = (e) => {
@@ -60,6 +60,7 @@ const Product = () => {
       console.log(error);
     }
   }, [dispatch]);
+
   useEffect(() => {
     getProductAll();
   }, [getProductAll, dispatch]);
@@ -76,7 +77,17 @@ const Product = () => {
           cate_id: product.cate_id,
         };
         return (
-          <Link
+          <div key={index}>
+            <ProductLayout
+              // keyy={index}
+              to={`product/${product.id}/${product.slug}`}
+              avatar={product.avatar}
+              name={product.name}
+              price={`${product.price.toLocaleString()}.000đ`}
+            />
+          </div>
+
+          /* <Link
             key={index}
             to={`product/${product.id}/${product.slug}`}
             className={`card ${styles.cardSize} shadow text-decoration-none text-black mt-3 rounded  mx-2`}
@@ -98,7 +109,7 @@ const Product = () => {
               <span>TP.HCM</span>
               <span>đã bán 2</span>
             </div>
-          </Link>
+          </Link> */
         );
       });
     }
