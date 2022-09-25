@@ -1,6 +1,6 @@
 import serviceCallApi from "../Service/serviceApi";
 
-async function signing({ email, password }, apiContext = {}) {
+async function signing({ email, password }) {
   const data = { email, password };
   try {
     const result = await serviceCallApi("login", "POST", data);
@@ -11,5 +11,5 @@ async function signing({ email, password }, apiContext = {}) {
   }
 }
 
-function signout(apiContext = {}) {}
+function signout() {}
 export { signing, signout };

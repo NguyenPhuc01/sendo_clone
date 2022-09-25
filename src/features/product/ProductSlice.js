@@ -6,7 +6,7 @@ export const getListProduct = createAsyncThunk(
   "product/getAll",
   async (pages) => {
     const result = await serviceCallApi(
-      `products?page=${pages}&limit=18&id=2`,
+      `products`,
       "GET"
     );
     return result;

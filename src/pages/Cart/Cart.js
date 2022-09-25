@@ -123,7 +123,7 @@ const Cart = () => {
                                   <p
                                     className={`card-text ${styles.fzCardText} text-uppercase mt-2 mb-2`}
                                   >
-                                    {e.name}
+                                    {e.title}
                                   </p>
 
                                   <button className="border-0 bg-body text-primary">
@@ -175,7 +175,7 @@ const Cart = () => {
                                 type="numeric"
                                 value={e.quantity}
                                 className={`${styles.count} ms-3 text-center`}
-                                onChange={() => {}}
+                                onChange={() => { }}
                               />
                               {/* <span></span> */}
                               <button

@@ -33,7 +33,7 @@ const LoginForm = () => {
       await dispatch(login(formData));
       navigate("/");
     } catch (error) {
-      console.log(error);
+      localStorage.clear();
     }
   };
   return (

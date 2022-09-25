@@ -58,10 +58,10 @@ const CheckOut = () => {
         product_id: e.id,
       };
     });
-    console.log(
-      "🚀 ~ file: CheckOut.js ~ line 62 ~ newItems ~ newItems",
-      newItems
-    );
+    // console.log(
+    //   "🚀 ~ file: CheckOut.js ~ line 62 ~ newItems ~ newItems",
+    //   newItems
+    // );
     const orderProduct = {
       user_id: nameInfor.id,
       full_name: data.fullName,
@@ -69,10 +69,10 @@ const CheckOut = () => {
       address: data.address,
       item: newItems,
     };
-    console.log(
-      "🚀 ~ file: CheckOut.js ~ line 70 ~ onSubmit ~ orderProduct",
-      orderProduct
-    );
+    // console.log(
+    //   "🚀 ~ file: CheckOut.js ~ line 70 ~ onSubmit ~ orderProduct",
+    //   orderProduct
+    // );
     try {
       await dispatch(checkOut(orderProduct));
       navigate("/order");

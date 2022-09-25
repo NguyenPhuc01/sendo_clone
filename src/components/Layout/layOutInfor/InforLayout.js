@@ -12,18 +12,31 @@ import {
   BsChatSquareDots,
   BsDiagram2,
   BsList,
+  BsBoxArrowRight,
 } from "react-icons/bs";
 import styles from "../../../pages/InforUser/InforUser.module.css";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCheckOut } from "../../../features/checkOut/CheckOutSlice";
 import { useNavigate } from "react-router-dom";
+import { logout } from "../../../features/login/LoginFormSlice";
 const InforLayout = () => {
   const infor = localStorage.getItem("userData");
   const nameInfor = JSON.parse(infor);
   const { user } = useSelector(selectCheckOut);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  const logOutOnMobile = async () => {
+    try {
+      await dispatch(logout());
+      localStorage.removeItem("react-use-cart");
+      navigate("/");
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="border-end">
       <div className="d-flex justify-content-between">
@@ -136,6 +149,11 @@ const InforLayout = () => {
                     <li className="mt-2">
                       <BsDiagram2 className="me-2" />
                       Liên kết mạng xã hội
+                    </li>
+
+                    <li className="mt-2" type="button" onClick={logOutOnMobile}>
+                      <BsBoxArrowRight className="me-2" />
+                      Đăng xuất
                     </li>
                   </ul>
                 </div>

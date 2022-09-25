@@ -59,7 +59,7 @@ export const checkOutSlice = createSlice({
     [checkOut.pending]: startLoading,
     [checkOut.fulfilled]: (state, { payload }) => {
       const { data } = payload;
-      console.log({ payload });
+      console.log({ data });
       //   Object.assign(state, {
       //     data: data.data,
       //   });

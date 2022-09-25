@@ -42,31 +42,33 @@ const DetailProduct = () => {
   }, []);
 
   const getProductList = async () => {
-    try {
-      const response = await serviceCallApi(`products/${id}`, "GET");
-
-      setProduct(response.data);
-    } catch (error) {
-      console.log(error);
-    }
+    fetch(`https://fakestoreapi.com/products/${id}`)
+      .then(res => res.json())
+      .then((json) => {
+        setProduct(json)
+      })
   };
   // const gotoCart = (data) => {
   //   addItem(data, parseInt(1));
   //   navigate("/cart");
   // };
+
+  console.log(product);
   const addItemDetai = () => {
     const data = {
       id: product.id,
-      name: product.name,
+      title: product.title,
       price: product.price,
-      avatar: product.avatar,
-      detail: product.detail,
-      cate_id: product.cate_id,
+      avatar: product.image,
+      detail: product.description,
     };
     addItem(data, parseInt(count));
 
     toast("Đã thêm sản phẩm vào giỏ hàng!");
   };
+
+
+  console.log({ addItem });
   const dispatch = useDispatch();
 
   const hanleBuyProduct = async () => {
@@ -78,7 +80,7 @@ const DetailProduct = () => {
       } else {
         navigate("/login");
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 
   return (
@@ -90,7 +92,7 @@ const DetailProduct = () => {
           <Col lg="5">
             <div>
               <img
-                src={product.avatar}
+                src={product.image}
                 alt=""
                 className="h-100 w-100 img-fluid"
               />
@@ -105,7 +107,7 @@ const DetailProduct = () => {
                   alt=""
                   className={`${styles.iconShop} mt-1 me-2 d-none d-sm-block rounded-3`}
                 />
-                <h5>{product.name}</h5>
+                <h5>{product.title}</h5>
               </div>
               <div className="mt-2">
                 <span>Thương hiệu: </span>
@@ -137,7 +139,7 @@ const DetailProduct = () => {
                     type="numeric"
                     value={count}
                     className={`${styles.count} ms-3 text-center`}
-                    onChange={() => {}}
+                    onChange={() => { }}
                   />
                   <button
                     className="border-0 ms-3 px-3 py-1"

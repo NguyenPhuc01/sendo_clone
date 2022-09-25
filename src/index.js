@@ -35,7 +35,7 @@ root.render(
             <Route path="/CheckOut" element={<CheckOut />} />
             <Route path="/Order" element={<Order />} />
             <Route path="/Thank" element={<Thank />} />
-            <Route path="/product/:id/:slug" element={<DetailProduct />} />
+            <Route path="/product/:id" element={<DetailProduct />} />
           </Routes>
         </BrowserRouter>
       </React.StrictMode>

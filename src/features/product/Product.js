@@ -12,7 +12,9 @@ import { getListProduct, selectProduct } from "./ProductSlice";
 import ProductLayout from "../../components/Layout/productLayout/ProductLayout";
 // const axios = require("axios").default;
 const pages = [1, 2, 3];
+
 const Product = (props) => {
+  const [data, setData] = useState([]);
   const dispatch = useDispatch();
 
   const [page, setPage] = useState(1);
@@ -50,8 +52,24 @@ const Product = (props) => {
     document.documentElement.scrollTop = 0;
   };
   //   const dataProduct = useSelector((state) => state.products.data);
-  const { data } = useSelector(selectProduct);
-  //   console.log("🚀 ~ file: Product.js ~ line 51 ~ Product ~ data", data);
+  // const { data } = useSelector(selectProduct);
+  useEffect(() => {
+    fetch('https://fakestoreapi.com/products?limit=18')
+      .then(res => res.json())
+      .then((json) => {
+        console.log(json)
+        setData(json)
+      })
+
+    fetch('https://fakestoreapi.com/products/1')
+      .then(res => res.json())
+      .then(json => console.log({ json }))
+  }, [])
+
+
+
+
+  // console.log("🚀 ~ file: Product.js ~ line 51 ~ Product ~ data", data);
   const getProductAll = useCallback(async () => {
     // console.log("POL");
     try {
@@ -70,20 +88,19 @@ const Product = (props) => {
       return data.map((product, index) => {
         const data = {
           id: product.id,
-          name: product.name,
+          name: product.title,
           price: product.price,
-          avatar: product.avatar,
-          detail: product.detail,
-          cate_id: product.cate_id,
+          avatar: product.image,
+          detail: product.description,
         };
         return (
           <div key={index}>
             <ProductLayout
               // keyy={index}
-              to={`product/${product.id}/${product.slug}`}
-              avatar={product.avatar}
-              name={product.name}
-              price={`${product.price.toLocaleString()}.000đ`}
+              to={`product/${product.id}`}
+              avatar={product.image}
+              name={product.title}
+              price={`${product.price.toLocaleString()}đ`}
             />
           </div>
 

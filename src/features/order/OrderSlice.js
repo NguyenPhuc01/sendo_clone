@@ -37,7 +37,7 @@ export const orderSlice = createSlice({
         data: data.data,
       });
       state.data = payload;
-      console.log({ payload });
+      // console.log({ payload });
     },
     [orderProduct.rejected]: receiveError,
   },
